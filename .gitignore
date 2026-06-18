@@ -1,0 +1,73 @@
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-workspace
+*.sublime-project
+
+# Build Output
+bin/
+obj/
+dist/
+build/
+.build/
+
+# Dependencies
+node_modules/
+.npm
+yarn.lock
+package-lock.json
+.pnpm-debug.log*
+
+# Test Coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# Environment
+.env
+.env.local
+.env.*.local
+.venv
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# OS
+Thumbs.db
+.Thumbs.db
+ehthumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+*.loglogs/
+
+# Temporary
+temp/
+tmp/
+.tmp/
+*.tmp
+
+# Runtime
+dist/
+build/
+
+# Documentation
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Video & Audio generated files (for AzureDevOpsSelflearn)
+*.mp4
+*.webm
+*.wav
+*.mp3
+generated-videos/
+generated-audio/

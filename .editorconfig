@@ -1,0 +1,43 @@
+# EditorConfig for consistent code style across all editors
+root = true
+
+# All files
+[*]
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Markdown files
+[*.md]
+max_line_length = 100
+trim_trailing_whitespace = false
+
+# JSON files
+[*.{json,jsonc}]
+indent_style = space
+indent_size = 2
+
+# YAML files
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# PowerShell files
+[*.ps1]
+indent_style = space
+indent_size = 4
+
+# C# files
+[*.cs]
+indent_style = space
+indent_size = 4
+
+# Bicep files
+[*.bicep]
+indent_style = space
+indent_size = 2
+
+# KQL files
+[*.kql]
+indent_style = space
+indent_size = 2
