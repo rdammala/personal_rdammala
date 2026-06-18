@@ -1,0 +1,12 @@
+{
+  "slug": "Platform-Engineer",
+  "roleTitle": "Platform Engineer",
+  "portfolioRoleTitle": "Platform Engineer",
+  "tagline": "Platform-minded reliability leader building scalable operational foundations, automation, and observability for engineering teams.",
+  "atsKeywords": ["Platform Engineer","developer platform","infrastructure as code","CI/CD","observability","reliability engineering","self-service automation","Azure","incident management","operational excellence"],
+  "twoPageSummary": "Platform Engineer with 16+ years of experience building the operational and automation foundations that enable engineering teams to move faster with less risk. Strong background in Azure, CI/CD, observability, incident management, and AI-assisted automation, with measurable success improving system signal quality, reducing toil, and scaling repeatable engineering workflows.",
+  "portfolioSummary": "Platform-focused profile emphasizing infrastructure, reliability, automation, observability, self-service operational tooling, and internal enablement across Microsoft production environments.",
+  "coreCompetencies": ["Platform Engineering","Infrastructure as Code","Observability","Developer Enablement","CI/CD","Reliability Engineering","Automation","Operational Metrics"],
+  "selectedImpact": ["Built AI and automation foundations for incident workflows.","Improved operational efficiency from 85% to 98%.","Authored 175+ playbooks and standardized procedures.","Managed pipelines and telemetry foundations across mission-critical services."],
+  "experienceFocus": []
+}

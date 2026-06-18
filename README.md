@@ -45,6 +45,12 @@ personal_rdammala/
 │   ├── technologies/           # Technology-specific deep-dives
 │   └── [Summary files]         # Progress tracking
 │
+├── Resume_Registry/            # Reusable ATS resume registry
+│   ├── data/                   # Shared profile + role-specific sources
+│   ├── scripts/                # docx/pdf generators
+│   ├── generated/              # Produced role artifacts
+│   └── README.md               # Usage guide
+│
 ├── .github/
 │   ├── ISSUE_TEMPLATE/         # GitHub issue templates
 │   └── workflows/              # CI/CD workflow definitions
@@ -88,6 +94,14 @@ Production-grade interview preparation and architecture mastery:
 - 50 real-world impact metrics (cost savings, latency improvements)
 - Complete unit test examples for each problem
 
+### Resume_Registry
+Reusable resume and portfolio asset system for role-based positioning:
+- Seven role families including Forward Deployed Engineer, Platform Engineer, Build Engineer, TPM, and SRE
+- ATS-friendly two-page application resumes
+- Detailed 4-5 page portfolio download resumes
+- Generic one-page cover letter generation per role family
+- JSON-backed registry and reusable docx/pdf generator
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -112,6 +126,12 @@ Production-grade interview preparation and architecture mastery:
    ```bash
    cd AzureDevOpsSelflearn
    .\Run-AudioVideo-Generation.ps1
+   ```
+
+4. **Generate role-based resume assets**:
+   ```bash
+   npm install
+   npm run resume:fde
    ```
 
 ## 📚 Learning Paths

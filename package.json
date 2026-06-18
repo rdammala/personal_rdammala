@@ -1,13 +1,20 @@
 {
   "name": "personal_rdammala",
   "version": "1.0.0",
-  "description": "A comprehensive learning repository for Azure DevOps and SupportServices architecture with production-grade code examples and interview preparation guides.",
+  "description": "A comprehensive learning repository for Azure DevOps, SupportServices architecture, resume assets, and production-grade code examples.",
   "type": "module",
   "main": "README.md",
   "scripts": {
     "generate:videos": "cd AzureDevOpsSelflearn && powershell -File Run-AudioVideo-Generation.ps1",
     "generate:audio": "cd AzureDevOpsSelflearn && powershell -File Generate-Audio.ps1",
     "generate:slides": "cd AzureDevOpsSelflearn && powershell -File Generate-Slides.ps1",
+    "resume:fde": "node Resume_Registry/scripts/generate_role_resume.js Forward-Deployed-Engineer",
+    "resume:platform": "node Resume_Registry/scripts/generate_role_resume.js Platform-Engineer",
+    "resume:build": "node Resume_Registry/scripts/generate_role_resume.js Build-Engineer",
+    "resume:director-im": "node Resume_Registry/scripts/generate_role_resume.js Director-Incident-Manager",
+    "resume:tpm": "node Resume_Registry/scripts/generate_role_resume.js Technical-Program-Manager",
+    "resume:senior-sre": "node Resume_Registry/scripts/generate_role_resume.js Senior-Site-Reliability-Engineering",
+    "resume:staff-escalation": "node Resume_Registry/scripts/generate_role_resume.js Staff-Escalation-Manager",
     "docs:build": "echo 'Documentation built'",
     "docs:index": "cd AzureDevOpsSelflearn && echo 'Indexing content...'",
     "lint:markdown": "markdownlint '**/*.md' --ignore node_modules",
@@ -33,14 +40,17 @@
     "url": "https://github.com/rdammala/personal_rdammala.git"
   },
   "devDependencies": {
+    "docx": "^9.7.1",
     "markdownlint": "^0.34.0",
-    "markdownlint-cli": "^0.39.0"
+    "markdownlint-cli": "^0.39.0",
+    "pdfkit": "^0.19.1"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "folders": {
     "AzureDevOpsSelflearn": "DevOps learning path with CI/CD, IaC, and automation",
-    "SupportServicesLearning": "Interview prep and SupportServices architecture mastery"
+    "SupportServicesLearning": "Interview prep and SupportServices architecture mastery",
+    "Resume_Registry": "ATS-focused role-based resume registry with portfolio and two-page variants"
   }
 }

@@ -260,6 +260,7 @@ copilot skill azure-deploy
 - **Main Repository**: See [README.md](../README.md)
 - **AzureDevOpsSelflearn**: [Start here](../AzureDevOpsSelflearn/QUICK-START.md)
 - **SupportServicesLearning**: [Interview prep](../SupportServicesLearning/README.md)
+- **Resume Registry**: [Role-based ATS resume sources](../Resume_Registry/README.md)
 - **Repository Structure**: [Details](../REPOSITORY_STRUCTURE.md)
 
 ---

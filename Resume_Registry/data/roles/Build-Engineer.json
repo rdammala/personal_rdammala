@@ -1,0 +1,12 @@
+{
+  "slug": "Build-Engineer",
+  "roleTitle": "Build Engineer",
+  "portfolioRoleTitle": "Build Engineer",
+  "tagline": "Release and automation engineer focused on pipeline quality, deployment safety, and repeatable build systems.",
+  "atsKeywords": ["Build Engineer","release engineering","CI/CD","Azure DevOps","pipeline automation","build tooling","deployment automation","PowerShell","Git","release quality"],
+  "twoPageSummary": "Build Engineer with 16+ years across production operations, deployment coordination, automation, and pipeline governance. Experienced in Azure DevOps, Git-based release workflows, operational readiness, and reducing friction between development and production through automation, telemetry, and controlled change practices.",
+  "portfolioSummary": "Build-engineering profile centered on CI/CD, release orchestration, deployment readiness, PowerShell automation, and stable production change management.",
+  "coreCompetencies": ["Build and Release Engineering","CI/CD","Azure DevOps Pipelines","PowerShell Automation","Change Management","Operational Readiness","Release Validation","Observability"],
+  "selectedImpact": ["Managed production ADO build and release pipelines for Xbox support services.","Standardized deployment and operational playbooks.","Improved release readiness and reduced noisy operational signals.","Automated onboarding and operational workflows to save 150+ hours annually."],
+  "experienceFocus": []
+}

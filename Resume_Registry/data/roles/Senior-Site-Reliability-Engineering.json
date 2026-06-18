@@ -1,0 +1,12 @@
+{
+  "slug": "Senior-Site-Reliability-Engineering",
+  "roleTitle": "Senior Site Reliability Engineer",
+  "portfolioRoleTitle": "Senior Site Reliability Engineer",
+  "tagline": "Senior SRE focused on reliability automation, observability, incident reduction, and resilient production operations at scale.",
+  "atsKeywords": ["Senior Site Reliability Engineer","SRE","observability","incident automation","KQL","Application Insights","Azure","toil reduction","reliability engineering","on-call"],
+  "twoPageSummary": "Senior Site Reliability Engineer with 16+ years in large-scale Azure and Microsoft production environments, specializing in incident automation, observability, operational playbooks, and telemetry-driven reliability improvements. Proven record reducing noise, improving MTTR, scaling automation, and enabling high-availability service operations.",
+  "portfolioSummary": "Detailed SRE profile covering live-site operations, AI-assisted incident management, observability platforms, operational metrics, playbooks, and 24x7 support leadership.",
+  "coreCompetencies": ["Site Reliability Engineering","Observability","Incident Response","On-Call Excellence","Telemetry Analysis","Automation","Reliability Metrics","Cloud Operations"],
+  "selectedImpact": ["30-35% incident automation potential.","25,000+ stale incidents remediated.","500+ alerts streamlined.","Operational efficiency improved from 85% to 98%."],
+  "experienceFocus": []
+}

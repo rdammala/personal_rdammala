@@ -1,0 +1,12 @@
+{
+  "slug": "Technical-Program-Manager",
+  "roleTitle": "Technical Program Manager",
+  "portfolioRoleTitle": "Technical Program Manager",
+  "tagline": "Technical program leader aligning engineering, operations, and stakeholders to deliver measurable platform and automation outcomes.",
+  "atsKeywords": ["Technical Program Manager","program delivery","cross-functional leadership","roadmap planning","risk management","stakeholder management","AI programs","SRE programs","Azure"],
+  "twoPageSummary": "Technical Program Manager with 16+ years of experience driving cross-functional cloud, SRE, automation, and operational excellence programs from strategy through rollout. Delivered measurable gains in efficiency, automation coverage, toil reduction, and executive visibility across Microsoft production environments.",
+  "portfolioSummary": "TPM profile highlighting strategy, planning, governance, AI and SRE transformation programs, metric-driven execution, and cross-functional delivery at scale.",
+  "coreCompetencies": ["Program Strategy","Cross-Functional Delivery","Risk and Dependency Management","Executive Reporting","Operational Metrics","AI Transformation","SRE Programs","Roadmap Execution"],
+  "selectedImpact": ["Drove AI and automation programs with ~122K annual savings.","Rolled out incident automation with 30-35% potential coverage.","Reduced provisioning and onboarding effort through automation and standardization.","Built executive-ready telemetry and reporting frameworks."],
+  "experienceFocus": []
+}

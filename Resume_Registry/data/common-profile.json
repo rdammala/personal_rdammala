@@ -1,0 +1,149 @@
+{
+  "name": "Rajesh Dammala",
+  "location": "Morrisville, NC",
+  "email": "rajesh.dammala@gmail.com",
+  "phone": "425-229-0060",
+  "linkedin": "linkedin.com/in/rajesh-dammala",
+  "education": "Bachelor of Engineering in Computer Science Engineering - JNTU, Hyderabad (2008)",
+  "certifications": [
+    "Microsoft Certified IT Professional: Implementing Microsoft Azure Infrastructure Solutions (70-533, 70-534)",
+    "AZ-900 Azure Fundamentals",
+    "TechMahindra AI White Belt",
+    "Google Introduction to Generative AI",
+    "Google Cloud Computing Foundations",
+    "TechM Curated AI for Beginners"
+  ],
+  "sharedMetrics": [
+    "16+ years across cloud operations, production engineering, escalation leadership, and data center environments",
+    "20+ mission-critical production services supported in 24x7x365 environments",
+    "30-35% incident automation potential delivered through AI-driven workflows",
+    "25,000+ stale or false incidents remediated",
+    "500+ noisy or redundant alerts streamlined",
+    "175+ troubleshooting guides and operational playbooks authored in 5 months",
+    "32% faster issue resolution through escalation framework redesign",
+    "85% to 98% operational efficiency improvement",
+    "Teams led across global geographies: up to 32 engineers",
+    "200+ bugs and feature enhancements raised across Azure operations, ICM, JIT, and Key Vault onboarding",
+    "~122K USD estimated annual savings through AI copilots and automation initiatives",
+    "150+ engineering hours per year saved through automation and onboarding tooling"
+  ],
+  "masterSkills": {
+    "Cloud Platforms": [
+      "Microsoft Azure",
+      "Azure App Service",
+      "Application Insights",
+      "Log Analytics",
+      "Azure Data Factory",
+      "Azure DevOps",
+      "Azure Key Vault",
+      "Azure Active Directory",
+      "Managed Identity",
+      "Azure Resource Groups",
+      "Cosmos DB",
+      "Front Door",
+      "Synapse"
+    ],
+    "Observability and Operations": [
+      "Kusto Query Language",
+      "Power BI",
+      "LiveSite Operations",
+      "Incident Command",
+      "Root Cause Analysis",
+      "MTTR Reduction",
+      "Alert Rationalization",
+      "SLA/SLO/SLI",
+      "Problem Management",
+      "Change Management"
+    ],
+    "Automation and Engineering": [
+      "PowerShell",
+      "Bicep",
+      "Infrastructure as Code",
+      "Logic Apps",
+      "CI/CD Pipelines",
+      "Git",
+      "REST APIs",
+      "SQL Server",
+      "Playwright",
+      "Python",
+      "ASP.NET Core"
+    ],
+    "AI and Agentic Systems": [
+      "Generative AI",
+      "AI copilots",
+      "Agentic workflows",
+      "Multi-agent orchestration",
+      "Azure SRE Agent",
+      "LLM-assisted diagnostics",
+      "Prompt libraries",
+      "AI-driven ticket triage"
+    ],
+    "Leadership": [
+      "Executive communication",
+      "Customer and stakeholder management",
+      "Cross-functional program delivery",
+      "Escalation leadership",
+      "Technical mentoring",
+      "Global team leadership",
+      "Operational excellence",
+      "Service delivery management"
+    ]
+  },
+  "experience": [
+    {
+      "company": "Microsoft Corporation (via TechMahindra / Allyis)",
+      "location": "Redmond, WA / Morrisville, NC",
+      "dates": "May 2021 - Present",
+      "baseTitle": "Lead Escalations Manager / SRE Program Lead",
+      "highlights": [
+        "Serve as central escalation authority for high-severity incidents across Xbox support services and adjacent production platforms.",
+        "Architected Azure SRE Agent platform for AI-driven incident diagnostics, triage, and remediation workflows across non-production and production environments.",
+        "Designed automation integrating ICM, Application Insights, Log Analytics, Azure DevOps, Kusto, SQL Server, Cosmos DB, and Microsoft Teams notifications.",
+        "Drove operational efficiency from 85% to 98% through alert rationalization, stale incident cleanup, playbook standardization, and automation-driven triage.",
+        "Remediated 25,000+ stale or false incidents and streamlined 500+ alerts to improve signal quality for engineering and operations teams.",
+        "Authored 175+ troubleshooting guides and operational playbooks in 5 months, accelerating onboarding and reducing repeat investigation effort.",
+        "Built Power BI and KQL dashboards for telemetry, service health, and LiveSite trends used in executive reviews and operational decision-making.",
+        "Led AI enablement initiatives including ADO Bug Intelligence, RF Insights Copilot, CAD Support Copilot, and prompt library efforts.",
+        "Managed production Azure DevOps build and release pipelines for Xbox support services, with emphasis on release quality, reliability, and controlled change.",
+        "Supported 24x7x365 mission-critical systems and participated directly in on-call and incident command workflows."
+      ]
+    },
+    {
+      "company": "Microsoft Corporation (via Mindtree)",
+      "location": "Redmond, WA",
+      "dates": "Nov 2016 - May 2021",
+      "baseTitle": "Azure Support Technical Lead",
+      "highlights": [
+        "Led a team of 15 engineers supporting Azure customer workloads, enterprise subscriptions, capacity questions, data migrations, and cross-team technical issues.",
+        "Spearheaded Azure chat support initiatives and improved service responsiveness through process and tooling improvements.",
+        "Managed Azure subscription and enterprise agreement scenarios, region capacity questions, identity concerns, and migration issues for customers and internal teams.",
+        "Partnered with Microsoft product and engineering groups to escalate customer-impacting issues and advocate for product enhancements.",
+        "Drove support quality and operational maturity in high-volume cloud environments requiring technical depth and stakeholder clarity."
+      ]
+    },
+    {
+      "company": "Microsoft Corporation (via Mindtree)",
+      "location": "Hyderabad, India / Redmond, WA",
+      "dates": "May 2012 - Nov 2016",
+      "baseTitle": "Operations Lead - Azure LiveSite Operations",
+      "highlights": [
+        "Led an operations organization spanning 12 senior engineers and 20 service engineers across Hyderabad and Redmond.",
+        "Performed deep technical investigations into complex Azure production issues from cluster to blade level.",
+        "Created PowerShell automation that saved thousands of manual hours annually across investigations, onboarding, and operational workflows.",
+        "Drove Azure network monitoring, change management, incident handling, and large-scale service health investigations.",
+        "Raised 200+ bugs and feature requests tied to ICM, JIT, Azure Key Vault onboarding, and operational platform improvements."
+      ]
+    },
+    {
+      "company": "IBM (via Infosoft Inc)",
+      "location": "Hammond, IN",
+      "dates": "Sep 2009 - Nov 2011",
+      "baseTitle": "Systems Analyst / Support Engineer / Data Center Engineer",
+      "highlights": [
+        "Built and decommissioned enterprise servers, configured clusters, patched systems, and supported production data center operations.",
+        "Migrated large data volumes and installed packaged tools and applications across server environments.",
+        "Supported foundational infrastructure engineering practices including hardware lifecycle, environment readiness, and deployment execution."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "Forward-Deployed-Engineer",
+  "roleTitle": "Forward Deployed Engineer",
+  "portfolioRoleTitle": "Forward Deployed Engineer",
+  "coverLetterTarget": "Hiring Manager",
+  "tagline": "Customer-embedded engineer translating ambiguous enterprise problems into production-ready, measurable technical outcomes.",
+  "atsKeywords": [
+    "Forward Deployed Engineer",
+    "customer-facing engineering",
+    "technical delivery",
+    "production deployment",
+    "system design",
+    "integration engineering",
+    "workflow automation",
+    "AI workflows",
+    "agentic systems",
+    "LLM deployment",
+    "observability",
+    "incident automation",
+    "customer discovery",
+    "requirements analysis",
+    "technical scoping",
+    "stakeholder management",
+    "time-to-value",
+    "adoption",
+    "field feedback",
+    "product feedback loop"
+  ],
+  "twoPageSummary": "Forward Deployed Engineer and reliability-focused technical leader with 16+ years of experience turning ambiguous operational and customer needs into production systems, automation frameworks, and measurable service outcomes. Built and operationalized AI-driven incident workflows, telemetry platforms, deployment processes, and cross-functional execution models across Azure and Xbox support ecosystems. Combines hands-on engineering depth with customer empathy, rapid discovery, and product judgment to shorten time-to-value, unblock complex implementations, and translate field constraints into scalable improvements.",
+  "portfolioSummary": "Forward Deployed Engineer profile built on 16+ years spanning cloud support, site reliability engineering, escalation leadership, incident automation, production operations, and data center systems. My work repeatedly sits at the intersection of customer pain, platform complexity, and engineering execution: I map messy real-world environments, identify the actual blocker underneath the stated blocker, and then design the workflow, tooling, and integration needed to produce a stable operational outcome. At Microsoft, I led reliability and escalation programs across mission-critical support systems, built AI-assisted triage and diagnostics, drove telemetry-led remediation, and partnered across engineering, operations, product, and leadership teams to move from reactive firefighting to repeatable, measurable delivery. That background aligns directly with modern FDE expectations: customer-embedded problem solving, end-to-end technical delivery, product feedback loops, and an ownership mindset that protects delivery without creating unnecessary product debt.",
+  "coreCompetencies": [
+    "Customer-Embedded Technical Delivery",
+    "Discovery, Scoping, and Requirements Translation",
+    "Production Rollout and Operationalization",
+    "Workflow Automation and AI Enablement",
+    "Integrations, Diagnostics, and Telemetry",
+    "Customer Communication and Stakeholder Alignment",
+    "Rapid Prototyping Under Ambiguity",
+    "Field-to-Product Feedback Loops",
+    "Escalation Handling and Outcome Ownership",
+    "Full-Stack Operational Problem Solving",
+    "Cross-Functional Delivery Across GTM, Product, and Engineering",
+    "Time-to-Value and Adoption Acceleration"
+  ],
+  "selectedImpact": [
+    "Architected an AI-driven Azure SRE Agent platform that operationalized incident diagnostics and response workflows across production and non-production systems, enabling 30-35% automation potential across high-volume incident categories.",
+    "Reduced operational noise by remediating 25,000+ stale or false incidents and streamlining 500+ alerts, improving support signal quality and shortening time-to-resolution for engineering teams.",
+    "Authored 175+ troubleshooting guides and operational playbooks in 5 months to standardize response paths, accelerate onboarding, and reduce repeat escalation handling effort.",
+    "Built telemetry and insight layers with KQL and Power BI to convert service data into executive-ready decision support, LiveSite trend analysis, and targeted remediation priorities.",
+    "Led cross-functional execution across support, engineering, operations, and leadership stakeholders to redesign escalation workflows and improve operational efficiency from 85% to 98%.",
+    "Delivered AI copilots and automation initiatives with an estimated 122K USD annualized savings while improving diagnostic throughput and reducing manual triage backlog."
+  ],
+  "experienceFocus": [
+    {
+      "title": "Lead Escalations Manager / SRE Program Lead",
+      "company": "Microsoft Corporation (via TechMahindra / Allyis)",
+      "dates": "May 2021 - Present",
+      "bullets": [
+        "Operate as a customer-proxy and engineering bridge for high-severity support and operational issues, translating ambiguous incidents and stakeholder needs into concrete diagnostics, routing, and remediation workflows.",
+        "Designed and deployed Azure SRE Agent workflows integrating ICM, Application Insights, Log Analytics, Kusto, SQL Server, Cosmos DB, and Teams notifications to enable production-grade incident automation and faster triage.",
+        "Built reusable operational patterns, playbooks, and onboarding automation that reduced engineering toil, improved time-to-value for internal teams, and scaled reliability practices beyond one-off interventions.",
+        "Used telemetry analysis to identify recurring operational pain points, quantify failure patterns, and shape remediation priorities with engineering and service owners.",
+        "Balanced immediate unblock-and-deliver work with scalable product judgment by distinguishing one-off operational exceptions from repeatable platform opportunities.",
+        "Drove stakeholder clarity during critical incidents through concise technical communication, executive-ready narratives, and clear decisions around scope, risk, and next action."
+      ]
+    },
+    {
+      "title": "Azure Support Technical Lead",
+      "company": "Microsoft Corporation (via Mindtree)",
+      "dates": "Nov 2016 - May 2021",
+      "bullets": [
+        "Worked directly with enterprise Azure customers and internal stakeholders on subscription, migration, identity, and capacity issues requiring both technical diagnosis and business-sensitive communication.",
+        "Led a team of 15 engineers supporting complex customer-facing cloud issues, shortening resolution paths through structured escalation and better service coordination.",
+        "Escalated customer pain into product and engineering channels, helping close gaps between supported workflows and real-world operational requirements."
+      ]
+    },
+    {
+      "title": "Operations Lead - Azure LiveSite Operations",
+      "company": "Microsoft Corporation (via Mindtree)",
+      "dates": "May 2012 - Nov 2016",
+      "bullets": [
+        "Built strong discovery instincts through deep investigation of Azure production failures, mapping technical dependencies and operational constraints rapidly across distributed systems.",
+        "Automated high-friction operational processes with PowerShell, reducing repetitive effort and enabling engineers to focus on higher-value problem solving.",
+        "Led globally distributed operations teams in complex, high-stakes environments where clear communication, prioritization, and calm execution were required."
+      ]
+    }
+  ],
+  "fullExperienceExtras": [
+    "Mapped incident categories, operational dependencies, and telemetry sources to identify the most automatable failure paths and prioritize engineering investment.",
+    "Created internal proof-of-value examples for AI-assisted diagnostics, showing how agentic workflows could reduce manual research and improve customer-facing responsiveness.",
+    "Worked across ambiguous ownership boundaries to keep delivery moving when incidents touched multiple services, teams, or support models.",
+    "Applied platform-style thinking to field problems by documenting reusable abstractions rather than relying only on ad hoc fixes.",
+    "Developed strong instincts for separating escalation theater from actual customer risk, allowing teams to focus engineering time where it created the most measurable value."
+  ],
+  "coverLetter": {
+    "subject": "Re: Forward Deployed Engineer",
+    "paragraphs": [
+      "I am applying for a Forward Deployed Engineer role because the work matches the way I have created value throughout my career: step into complex environments, understand what is really blocking progress, and build the technical path that gets teams to a working outcome. Across 16+ years at Microsoft and IBM, I have operated at the intersection of production operations, escalation leadership, cloud engineering, and AI-enabled automation, consistently translating ambiguous operational problems into stable delivery patterns.",
+      "In my current Microsoft role, I serve as the bridge between urgent operational reality and engineering execution for mission-critical support services. I designed AI-driven incident automation integrating ICM, Application Insights, Log Analytics, Azure DevOps, Kusto, SQL Server, Cosmos DB, and Teams workflows; streamlined 500+ noisy alerts; remediated 25,000+ stale or false incidents; authored 175+ troubleshooting guides in 5 months; and helped improve operational efficiency from 85% to 98%. That combination of hands-on systems thinking, delivery ownership, and stakeholder communication is the core of modern forward deployed engineering.",
+      "I also bring the customer-facing judgment that strong FDE teams need. Earlier in my Azure support leadership work, I partnered directly with enterprise users and internal stakeholders on migration, subscription, identity, and capacity issues where technical decisions had direct business impact. I learned how to simplify complexity, sequence delivery, push back constructively when needed, and convert field pain into actionable product feedback without losing momentum.",
+      "I would welcome the chance to bring that blend of engineering depth, ambiguity tolerance, AI workflow fluency, and customer-centered execution to a Forward Deployed Engineer role. I am especially motivated by opportunities where embedded engineering can accelerate adoption, reduce time-to-value, and turn real-world constraints into repeatable product and platform improvements."
+    ]
+  }
+}
