@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal RD Project — Learning Hub</title>
+    <title>Personal RD Project — Complete Learning Hub</title>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -17,23 +19,25 @@
             --primary-light: #00d4ff;
             --secondary: #f94144;
             --accent: #ffd60a;
-            --dark-bg: #0a0e27;
-            --dark-surface: #1a1f3a;
-            --dark-text: #e0e0e0;
-            --light-bg: #f5f5f5;
-            --light-surface: #ffffff;
-            --light-text: #333333;
             --success: #06d6a0;
             --warning: #f18701;
             --error: #d62828;
+            --dark-bg: #0a0e27;
+            --dark-surface: #1a1f3a;
+            --dark-text: #e0e0e0;
+            --dark-border: #2d3456;
+            --light-bg: #f5f5f5;
+            --light-surface: #ffffff;
+            --light-text: #333333;
+            --light-border: #e0e0e0;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
             background: var(--dark-bg);
             color: var(--dark-text);
             line-height: 1.6;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         body.light-mode {
@@ -41,33 +45,38 @@
             color: var(--light-text);
         }
 
-        /* Header & Navigation */
+        /* Header */
         header {
             background: var(--dark-surface);
-            border-bottom: 2px solid var(--primary);
+            border-bottom: 3px solid var(--primary);
             padding: 1rem 2rem;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         header.light-mode {
             background: var(--light-surface);
-            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .header-content {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 2rem;
         }
 
         h1 {
             font-size: 1.8rem;
-            color: var(--primary-light);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin: 0;
+            flex: 1;
         }
 
         .header-controls {
@@ -76,118 +85,158 @@
             align-items: center;
         }
 
-        .theme-toggle, .search-toggle {
-            background: var(--primary);
-            border: none;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s ease;
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
         }
 
-        .theme-toggle:hover, .search-toggle:hover {
-            background: var(--primary-light);
-        }
-
-        /* Search Bar */
-        .search-container {
-            display: none;
+        .search-box input {
             width: 100%;
-            padding: 1rem 2rem;
-            background: var(--dark-surface);
-            border-bottom: 1px solid var(--primary);
-        }
-
-        .search-container.active {
-            display: block;
-        }
-
-        .search-container.light-mode {
-            background: var(--light-surface);
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--primary);
+            padding: 0.6rem 1rem;
+            border: 2px solid var(--primary);
             border-radius: 4px;
             background: var(--dark-bg);
             color: var(--dark-text);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
-        input[type="text"].light-mode {
+        .search-box.light-mode input {
             background: var(--light-bg);
             color: var(--light-text);
+            border-color: var(--primary);
         }
 
-        /* Main Content */
-        .container {
-            max-width: 1400px;
+        .search-box input::placeholder {
+            color: var(--dark-text);
+            opacity: 0.6;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        button {
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        button:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        button.secondary {
+            background: var(--dark-border);
+        }
+
+        button.secondary:hover {
+            background: var(--primary);
+        }
+
+        /* Main Layout */
+        .main-container {
+            max-width: 1600px;
             margin: 0 auto;
-            padding: 2rem;
             display: grid;
-            grid-template-columns: 250px 1fr;
+            grid-template-columns: 280px 1fr;
             gap: 2rem;
+            padding: 2rem;
+            min-height: calc(100vh - 100px);
         }
 
+        /* Sidebar */
         .sidebar {
-            background: var(--dark-surface);
-            padding: 1.5rem;
-            border-radius: 8px;
-            height: fit-content;
             position: sticky;
-            top: 80px;
+            top: 100px;
+            height: fit-content;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
         }
 
-        .sidebar.light-mode {
-            background: var(--light-surface);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        .sidebar-section {
+            margin-bottom: 2rem;
         }
 
-        .sidebar h3 {
+        .sidebar-title {
             color: var(--primary-light);
+            font-weight: 700;
+            font-size: 0.95rem;
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
         }
 
-        .sidebar a {
-            display: block;
-            padding: 0.75rem;
-            margin-bottom: 0.5rem;
-            background: var(--dark-bg);
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-item {
+            padding: 0.8rem 1rem;
+            background: var(--dark-surface);
             color: var(--primary-light);
             text-decoration: none;
             border-left: 3px solid transparent;
             border-radius: 4px;
+            cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: block;
         }
 
-        .sidebar a:hover, .sidebar a.active {
+        .nav-item:hover {
+            background: rgba(0, 168, 232, 0.1);
+            border-left-color: var(--primary-light);
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
             background: var(--primary);
             color: white;
             border-left-color: var(--primary-light);
+            font-weight: 600;
         }
 
-        .sidebar.light-mode a {
-            background: var(--light-bg);
+        body.light-mode .nav-item {
+            background: var(--light-surface);
             color: var(--primary);
+            border: 1px solid var(--light-border);
+        }
+
+        body.light-mode .nav-item:hover {
+            background: var(--light-bg);
+            border-left-color: var(--primary);
+        }
+
+        body.light-mode .nav-item.active {
+            background: var(--primary);
+            color: white;
         }
 
         /* Content Area */
-        .content {
+        .content-container {
             background: var(--dark-surface);
-            padding: 2rem;
             border-radius: 8px;
+            padding: 2.5rem;
+            max-height: calc(100vh - 120px);
             overflow-y: auto;
-            max-height: 80vh;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
-        .content.light-mode {
+        body.light-mode .content-container {
             background: var(--light-surface);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .module {
@@ -196,20 +245,44 @@
 
         .module.active {
             display: block;
-            animation: fadeIn 0.3s ease;
+            animation: slideIn 0.3s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
+        /* Typography */
         .module h2 {
             color: var(--primary-light);
-            margin-bottom: 1rem;
-            font-size: 1.6rem;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
             border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
+            padding-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .module h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .module h4 {
+            color: var(--accent);
+            font-size: 1.05rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
         }
 
         .module p {
@@ -217,60 +290,75 @@
             line-height: 1.8;
         }
 
-        .module ul {
+        .module ul, .module ol {
             margin-left: 2rem;
             margin-bottom: 1rem;
         }
 
         .module li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            line-height: 1.6;
         }
 
         /* Code Blocks */
         pre {
             background: var(--dark-bg);
-            padding: 1rem;
+            padding: 1.5rem;
             border-left: 4px solid var(--primary);
-            border-radius: 4px;
+            border-radius: 6px;
             overflow-x: auto;
-            margin-bottom: 1rem;
+            margin: 1.5rem 0;
             font-size: 0.9rem;
+            line-height: 1.5;
         }
 
-        .content.light-mode pre {
+        body.light-mode pre {
             background: #f5f5f5;
+            border-left-color: var(--primary);
         }
 
         code {
-            font-family: 'Courier New', monospace;
+            font-family: 'Courier New', 'Monaco', monospace;
             color: var(--success);
+        }
+
+        pre code {
+            color: inherit;
         }
 
         /* Tables */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 1rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--dark-border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        body.light-mode table {
+            border-color: var(--light-border);
         }
 
         table th {
             background: var(--primary);
             color: white;
-            padding: 0.75rem;
+            padding: 1rem;
             text-align: left;
+            font-weight: 600;
         }
 
         table td {
-            padding: 0.75rem;
-            border-bottom: 1px solid var(--dark-bg);
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid var(--dark-border);
         }
 
-        .content.light-mode table {
-            border-color: #e0e0e0;
+        body.light-mode table td {
+            border-bottom-color: var(--light-border);
         }
 
         table tr:hover {
-            background: rgba(0, 168, 232, 0.1);
+            background: rgba(0, 168, 232, 0.05);
         }
 
         /* Cards */
@@ -278,66 +366,44 @@
             background: var(--dark-bg);
             padding: 1.5rem;
             border-radius: 8px;
-            margin-bottom: 1rem;
+            margin: 1.5rem 0;
             border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
-        .content.light-mode .card {
+        body.light-mode .card {
             background: var(--light-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         .card h4 {
             color: var(--primary-light);
-            margin-bottom: 0.5rem;
+            margin-top: 0;
         }
 
-        /* Mermaid Diagrams */
-        .mermaid {
-            display: flex;
-            justify-content: center;
-            margin: 2rem 0;
-            background: var(--dark-bg);
-            padding: 1rem;
-            border-radius: 8px;
-        }
-
-        .content.light-mode .mermaid {
-            background: #f9f9f9;
-        }
-
-        /* Quick Reference */
-        .quick-ref {
-            background: linear-gradient(135deg, rgba(0,168,232,0.1), rgba(0,212,255,0.1));
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border: 1px solid var(--primary);
-        }
-
-        .quick-ref h4 {
-            color: var(--primary-light);
-            margin-bottom: 0.5rem;
+        .card p {
+            margin-bottom: 0.8rem;
         }
 
         /* Interview Tips */
         .interview-tip {
             background: rgba(253, 85, 74, 0.1);
-            padding: 1rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--error);
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
         }
 
         .interview-tip strong {
             color: var(--secondary);
         }
 
-        /* Stats */
+        /* Stats Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
         .stat-card {
@@ -346,177 +412,246 @@
             border-radius: 8px;
             text-align: center;
             border-top: 3px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
-        .stat-card.light-mode {
+        body.light-mode .stat-card {
             background: var(--light-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         .stat-number {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--primary-light);
-            font-weight: bold;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            color: var(--dark-text);
             font-size: 0.9rem;
-            margin-top: 0.5rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
+        /* Mermaid */
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            background: var(--dark-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--dark-border);
+        }
+
+        body.light-mode .mermaid {
+            background: #fafafa;
+            border-color: var(--light-border);
+        }
+
+        /* Quick Ref */
+        .quick-ref {
+            background: linear-gradient(135deg, rgba(0,168,232,0.1), rgba(0,212,255,0.1));
+            border: 1px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .quick-ref h4 {
+            color: var(--primary-light);
+            margin-top: 0;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--dark-bg);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--success));
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
             background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            transition: background 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
+            border-radius: 5px;
         }
 
-        .btn:hover {
+        ::-webkit-scrollbar-thumb:hover {
             background: var(--primary-light);
         }
 
-        .btn-secondary {
-            background: var(--secondary);
-        }
-
-        .btn-secondary:hover {
-            background: #ff5252;
+        body.light-mode ::-webkit-scrollbar-track {
+            background: var(--light-bg);
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .container {
+        @media (max-width: 1024px) {
+            .main-container {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
             .sidebar {
-                position: relative;
-                top: auto;
+                display: none;
             }
 
-            .content {
+            .content-container {
                 max-height: none;
             }
 
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
             h1 {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
+            }
+
+            .module h2 {
+                font-size: 1.5rem;
             }
         }
 
-        /* Quiz Mode */
-        .quiz-question {
-            background: var(--dark-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--primary);
-        }
-
-        .quiz-options {
+        /* Breadcrumb */
+        .breadcrumb {
             display: flex;
-            flex-direction: column;
             gap: 0.5rem;
-            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--dark-text);
+            opacity: 0.7;
         }
 
-        .quiz-option {
-            padding: 0.75rem;
-            background: rgba(0,168,232,0.1);
-            border: 1px solid var(--primary);
-            border-radius: 4px;
+        .breadcrumb span {
             cursor: pointer;
-            transition: all 0.3s ease;
+            color: var(--primary-light);
+            text-decoration: underline;
         }
 
-        .quiz-option:hover {
-            background: rgba(0,168,232,0.2);
-            border-color: var(--primary-light);
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
         }
 
-        .quiz-option.correct {
-            background: rgba(6,214,160,0.2);
-            border-color: var(--success);
-            color: var(--success);
+        .badge.time {
+            background: var(--accent);
+            color: var(--dark-text);
         }
 
-        .quiz-option.incorrect {
-            background: rgba(214,40,40,0.2);
-            border-color: var(--error);
-            color: var(--error);
+        .badge.intermediate {
+            background: var(--warning);
+            color: white;
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 2rem;
+            border-top: 1px solid var(--dark-border);
             color: var(--dark-text);
-            border-top: 1px solid var(--dark-surface);
+            opacity: 0.7;
+            margin-top: 2rem;
+            font-size: 0.9rem;
         }
 
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background: var(--dark-bg);
-            border-radius: 2px;
-            overflow: hidden;
+        body.light-mode footer {
+            border-top-color: var(--light-border);
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--dark-text);
+            opacity: 0.6;
+        }
+
+        .no-results h3 {
             margin-bottom: 1rem;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--primary-light));
-            transition: width 0.3s ease;
+        /* Highlight Search Term */
+        .highlight {
+            background-color: rgba(255, 214, 10, 0.3);
+            padding: 0.1rem 0.3rem;
+            border-radius: 2px;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="header-content">
             <h1>📚 Personal RD Project — Learning Hub</h1>
-            <div class="header-controls">
-                <button class="search-toggle" onclick="toggleSearch()">🔍 Search</button>
-                <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+            <div class="search-box">
+                <input type="text" id="globalSearch" placeholder="🔍 Search all content...">
+            </div>
+            <div class="btn-group">
+                <button class="secondary" onclick="toggleTheme()">🌙 Dark</button>
             </div>
         </div>
     </header>
 
-    <div class="search-container" id="searchContainer">
-        <input type="text" id="searchInput" placeholder="Search modules, concepts, commands..." onkeyup="filterModules()">
-    </div>
-
-    <div class="container">
+    <!-- Main Content -->
+    <div class="main-container">
         <!-- Sidebar Navigation -->
-        <aside class="sidebar" id="sidebar">
-            <h3>📖 Learning Modules</h3>
-            <a href="#" onclick="showModule('overview')">0. Project Overview</a>
-            <a href="#" onclick="showModule('structure')">1. Repository Structure</a>
-            <a href="#" onclick="showModule('architecture')">🏗️ Architecture</a>
-            <a href="#" onclick="showModule('git')">2. Git Workflows</a>
-            <a href="#" onclick="showModule('scripting')">3. Scripting & Automation</a>
-            <a href="#" onclick="showModule('bicep')">4. Infrastructure as Code</a>
-            <a href="#" onclick="showModule('portfolio')">5. Portfolio Generation</a>
-            <a href="#" onclick="showModule('cicd')">6. CI-CD Pipelines</a>
-            <a href="#" onclick="showModule('web')">7. Web Development</a>
-            <a href="#" onclick="showModule('sdlc')">8. Complete SDLC</a>
-            <a href="#" onclick="showModule('interviews')">9. Interview Guide</a>
-            <a href="#" onclick="showModule('quickref')">⚡ Quick Reference</a>
-            <a href="#" onclick="startQuiz()">🎯 Quiz Mode</a>
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">📖 Learning Modules</div>
+                <div class="sidebar-nav">
+                    <a class="nav-item" onclick="showModule('overview')">📌 Project Overview</a>
+                    <a class="nav-item" onclick="showModule('structure')">📁 Repository Structure</a>
+                    <a class="nav-item" onclick="showModule('architecture')">🏗️ Architecture & Diagrams</a>
+                    <a class="nav-item" onclick="showModule('git')">🔀 Git Workflows</a>
+                    <a class="nav-item" onclick="showModule('interviews')">🎤 Interview Guide</a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">⚡ Quick Links</div>
+                <div class="sidebar-nav">
+                    <a class="nav-item" onclick="showModule('quickref')">📋 Quick Reference</a>
+                    <a class="nav-item" onclick="showModule('stats')">📊 Project Stats</a>
+                    <a class="nav-item" onclick="showModule('checklist')">✅ Interview Checklist</a>
+                </div>
+            </div>
         </aside>
 
-        <!-- Main Content -->
-        <main class="content" id="content">
-            <!-- Overview Module -->
+        <!-- Content Area -->
+        <main class="content-container" id="contentContainer">
+            <!-- MODULE: Overview -->
             <div class="module active" id="module-overview">
-                <h2>🎯 Project Overview</h2>
+                <h2>📌 Project Overview <span class="badge time">15 min</span></h2>
                 
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 100%"></div>
@@ -525,11 +660,11 @@
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-number">27</div>
-                        <div class="stat-label">GitHub Repos Synced</div>
+                        <div class="stat-label">GitHub Repos</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">9</div>
-                        <div class="stat-label">Portfolio Websites</div>
+                        <div class="stat-label">Portfolios</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">88</div>
@@ -542,321 +677,1023 @@
                 </div>
 
                 <h3>What is This Project?</h3>
-                <p>The <strong>personal_rdammala</strong> project is a complete automation system demonstrating:</p>
+                <p>The <strong>personal_rdammala</strong> project is a <strong>complete automation system</strong> demonstrating end-to-end DevOps practices:</p>
                 <ul>
-                    <li>✅ Version control with Git & GitHub (27 repos)</li>
-                    <li>✅ PowerShell automation for repository synchronization</li>
-                    <li>✅ Resume generation with Node.js templating</li>
-                    <li>✅ HTML/CSS/JS portfolio websites deployed to GitHub Pages</li>
-                    <li>✅ Infrastructure as Code using Bicep</li>
-                    <li>✅ DevOps best practices and learning materials</li>
+                    <li>✅ Version control with <strong>Git & GitHub (27 repos)</strong></li>
+                    <li>✅ <strong>PowerShell automation</strong> for repository synchronization</li>
+                    <li>✅ <strong>Resume generation</strong> with Node.js templating</li>
+                    <li>✅ <strong>HTML/CSS/JS portfolio websites</strong> deployed to GitHub Pages</li>
+                    <li>✅ <strong>Infrastructure as Code</strong> using Bicep for Azure</li>
+                    <li>✅ <strong>DevOps best practices</strong> and learning materials</li>
                 </ul>
 
                 <h3>Why Build This?</h3>
+
                 <div class="card">
                     <h4>🎯 Problem: Manual Resume Versioning</h4>
-                    <p>Creating separate resumes for different companies wastes time. Solution: Automate with templates.</p>
+                    <p>Creating separate resumes for different companies wastes time and effort.</p>
+                    <p><strong>Solution:</strong> Automated resume generator with templates and keyword matching.</p>
                 </div>
 
                 <div class="card">
-                    <h4>🎯 Problem: Portfolio Scattered Across Repos</h4>
-                    <p>27 GitHub repos hard to sync. Solution: PowerShell script syncs all in <2 minutes.</p>
+                    <h4>🎯 Problem: 27 Repos Hard to Sync</h4>
+                    <p>Manual synchronization is error-prone and time-consuming.</p>
+                    <p><strong>Solution:</strong> PowerShell script syncs all 27 repos in under 2 minutes.</p>
                 </div>
 
                 <div class="card">
-                    <h4>🎯 Problem: Interview Prep Material Lost</h4>
-                    <p>DevOps knowledge scattered. Solution: 88 organized learning documents covering Git, CI-CD, Bicep.</p>
+                    <h4>🎯 Problem: Interview Prep Material Scattered</h4>
+                    <p>DevOps knowledge spread across books, docs, and personal notes.</p>
+                    <p><strong>Solution:</strong> 88 organized learning documents covering Git, CI-CD, Bicep, DevOps.</p>
+                </div>
+
+                <h3>Key Results</h3>
+                <ul>
+                    <li>⚡ <strong>95% reduction</strong> in manual resume versioning work</li>
+                    <li>⚡ Synced 27 repos in <strong>&lt;2 minutes</strong></li>
+                    <li>⚡ Resume generation from template in <strong>3 seconds</strong></li>
+                    <li>⚡ 9 portfolio websites <strong>live on GitHub Pages</strong></li>
+                    <li>⚡ <strong>5000+ lines</strong> of production code</li>
+                    <li>⚡ <strong>7+ hours</strong> of interview prep material</li>
+                </ul>
+
+                <div class="interview-tip">
+                    <strong>💡 Interview Talking Point:</strong> "I built a complete automation system managing 27 GitHub repos with PowerShell. The resume generator creates tailored .docx/.pdf files in seconds from templates. My 9 portfolio websites showcase modern web development skills deployed on GitHub Pages. This project demonstrates the entire SDLC: design, development, testing, and deployment."
+                </div>
+
+                <h3>SDLC Phases</h3>
+                <ul>
+                    <li><strong>Phase 1: Plan & Design</strong> — Define scope, identify 27 repos, sketch architecture</li>
+                    <li><strong>Phase 2: Develop</strong> — Build PowerShell script, resume generator, portfolio templates</li>
+                    <li><strong>Phase 3: Build & Integrate</strong> — Combine components, test locally</li>
+                    <li><strong>Phase 4: Deploy</strong> — Push portfolios to GitHub Pages, activate Job Tracker</li>
+                    <li><strong>Phase 5: Monitor & Maintain</strong> — Ongoing sync, add new portfolios, track applications</li>
+                </ul>
+            </div>
+
+            <!-- MODULE: Structure -->
+            <div class="module" id="module-structure">
+                <h2>📁 Repository Structure <span class="badge time">20 min</span></h2>
+
+                <h3>Project Directory Organization</h3>
+                <pre><code>personal_rdammala/                        # Root monorepo
+├── LEARNING_HUB.md                     # Entry point
+├── LEARNING_GUIDES/                    # Learning modules
+│   ├── 0-PROJECT-OVERVIEW.md
+│   ├── 1-REPOSITORY-STRUCTURE.md       # ← You are here
+│   ├── ARCHITECTURE.md
+│   ├── 2-GIT-WORKFLOWS.md
+│   └── 9-INTERVIEW-GUIDE.md
+├── Sync-GitHub-Repos.ps1               # Core automation script
+├── package.json                        # Node.js dependencies
+├── AzureDevOpsSelflearn/               # Learning content (11 modules)
+├── SupportServicesLearning/            # Interview prep (50 problems)
+├── Resume_Registry/                    # Resume generation tools
+├── Grow-Therapy-SRE/                   # Portfolio example
+└── Skills_Registry/                    # Tech skills inventory</code></pre>
+
+                <h3>Folder Organization Principles</h3>
+
+                <div class="card">
+                    <h4>Principle 1: Purpose-Based Grouping</h4>
+                    <p>Files are organized by <strong>what they do</strong>, not by file type.</p>
+                </div>
+
+                <div class="card">
+                    <h4>Principle 2: Monorepo Pattern</h4>
+                    <p>Single repo containing multiple related projects: sync script, resume generator, 11 learning modules, multiple portfolios, infrastructure code.</p>
+                </div>
+
+                <div class="card">
+                    <h4>Principle 3: Naming Conventions</h4>
+                    <table>
+                        <tr>
+                            <th>Pattern</th>
+                            <th>Example</th>
+                            <th>Reason</th>
+                        </tr>
+                        <tr>
+                            <td>MD files: NUMBER-TOPIC</td>
+                            <td>02-CI-CD-Pipelines.md</td>
+                            <td>Clear learning order</td>
+                        </tr>
+                        <tr>
+                            <td>Scripts: verb-noun</td>
+                            <td>Sync-GitHub-Repos.ps1</td>
+                            <td>Self-documenting action</td>
+                        </tr>
+                        <tr>
+                            <td>Folders: noun (plural)</td>
+                            <td>LEARNING_GUIDES/</td>
+                            <td>Clear content type</td>
+                        </tr>
+                        <tr>
+                            <td>Portfolios: RoleName</td>
+                            <td>Senior-Manager-SRE/</td>
+                            <td>SEO-friendly, descriptive</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Portfolio Repository Structure</h3>
+                <p>Every role-based portfolio follows this <strong>exact structure</strong>:</p>
+                <pre><code>Senior-Manager-SRE/                  # Repo name
+├── index.html                       # Main portfolio page
+├── style.css                        # External stylesheet
+├── script.js                        # JavaScript (dark mode)
+├── favicon.svg                      # Browser tab icon
+├── Rajesh_Dammala_Resume.pdf       # Downloadable resume
+├── README.md                        # Tech stack ONLY (4-8 lines)
+└── .gitignore                       # Git tracking rules</code></pre>
+
+                <h3>Critical Rules for Portfolios</h3>
+                <ul>
+                    <li>✅ <code>index.html</code> — Single-page portfolio (no other HTML files)</li>
+                    <li>✅ <code>style.css</code> — External CSS file (NOT inline &lt;style&gt; tags)</li>
+                    <li>✅ <code>script.js</code> — Vanilla JavaScript (no frameworks like React)</li>
+                    <li>✅ <code>favicon.svg</code> — SVG format (scalable, theme colors)</li>
+                    <li>✅ <code>.pdf</code> file — Git-tracked (remove *.pdf from .gitignore)</li>
+                    <li>✅ <code>.gitignore</code> — Only excludes *.docx, .DS_Store, node_modules/</li>
+                </ul>
+
+                <h3>Why External CSS/JS?</h3>
+                <ul>
+                    <li>🚀 GitHub Pages caches them efficiently</li>
+                    <li>📝 Cleaner HTML structure</li>
+                    <li>🔧 Easier to maintain and update</li>
+                    <li>⚡ Browser can render while loading</li>
+                </ul>
+
+                <div class="interview-tip">
+                    <strong>💡 Interview Q: "Explain your repository structure"</strong>
+                    <p>Answer: "I organize this project using a <strong>monorepo pattern</strong> with purpose-based grouping. The root contains learning guides, automation scripts, infrastructure code, and multiple portfolio repositories. Each portfolio repo (like Senior-Manager-SRE/) follows a strict structure: index.html + style.css + script.js + favicon + Resume PDF. I use consistent naming conventions: learning modules are numbered (0-PROJECT-OVERVIEW.md), scripts use Verb-Noun (Sync-GitHub-Repos.ps1), and portfolios use RoleName (kebab-case). This structure supports: organizing learning content, demonstrating DevOps practices, and managing multiple portfolio websites at scale."</p>
+                </div>
+            </div>
+
+            <!-- MODULE: Architecture -->
+            <div class="module" id="module-architecture">
+                <h2>🏗️ Architecture & Diagrams <span class="badge intermediate">25 min</span></h2>
+
+                <h3>High-Level System Architecture</h3>
+                <div class="mermaid">
+graph TB
+    subgraph "Data Layer"
+        A["27 GitHub Repos<br/>(distributed)"]
+        B["Local Git Repos<br/>(cloned)"]
+    end
+    
+    subgraph "Processing Layer"
+        C["PowerShell<br/>Sync Script"]
+        D["Node.js<br/>Resume Generator"]
+        E["GitHub Actions<br/>(future)"]
+    end
+    
+    subgraph "Presentation Layer"
+        F["9 Portfolio<br/>Websites"]
+        G["Job Tracker<br/>Web App"]
+    end
+    
+    subgraph "Deployment"
+        H["GitHub Pages<br/>(static hosting)"]
+        I["GitHub Repos<br/>(version control)"]
+    end
+    
+    A -->|git clone| B
+    B -->|PowerShell| C
+    C -->|sync status| A
+    D -->|generate| F
+    D -->|generate| G
+    F -->|git push| I
+    I -->|builds| H
+    G -->|stores| H
+    E -.->|future automation| C
+    E -.->|future automation| D
+                </div>
+
+                <h3>Repository Sync Flow</h3>
+                <div class="mermaid">
+sequenceDiagram
+    participant User
+    participant Script as PowerShell Script
+    participant Git as Git CLI
+    participant GitHub as GitHub
+    participant Local as Local Repos
+    
+    User->>Script: .\Sync-GitHub-Repos.ps1
+    Script->>Script: Load repo list (27 repos)
+    Script->>Script: For each repo:
+    
+    alt Repo exists locally?
+        Script->>Git: git fetch origin
+        Git->>GitHub: Check for updates
+        GitHub-->>Git: Latest commits
+        Git-->>Local: Update refs
+        Script->>Git: git pull origin main
+        Git->>Local: Merge changes
+    else Repo missing
+        Script->>Git: git clone <URL>
+        Git->>GitHub: Download repo
+        GitHub-->>Local: Full history
+    end
+    
+    Script->>Script: Report sync status
+    Script-->>User: ✅ Sync complete (27/27)
+                </div>
+
+                <h3>Resume Generation Pipeline</h3>
+                <div class="mermaid">
+graph LR
+    A["Job Description<br/>(JD)"]
+    B["Resume Template<br/>(HTML)"]
+    C["Resume Generator<br/>(Node.js)"]
+    D["Parse JD<br/>Keywords"]
+    E["Select Template<br/>Role-based"]
+    F["Fill<br/>Placeholders"]
+    G["Generate .docx"]
+    H["Generate .pdf"]
+    I["Output Files"]
+    
+    A -->|input| D
+    B -->|template| E
+    D -->|keywords| F
+    E -->|format| F
+    F -->|convert| G
+    F -->|convert| H
+    G -->|file| I
+    H -->|file| I
+    
+    C -.->|orchestrates| D
+    C -.->|orchestrates| E
+    C -.->|orchestrates| F
+                </div>
+
+                <h3>Portfolio Deployment Flow</h3>
+                <div class="mermaid">
+graph TB
+    A["Create Portfolio<br/>Locally"]
+    B["HTML/CSS/JS<br/>Files"]
+    C["Git Commit"]
+    D["Git Push"]
+    E["GitHub Repo"]
+    F["Enable Pages"]
+    G["GitHub Actions<br/>Build"]
+    H["Pages CDN<br/>Cache"]
+    I["Live Portfolio"]
+    
+    A -->|create| B
+    B -->|stage| C
+    C -->|push| D
+    D -->|webhook| E
+    E -->|enable| F
+    F -->|triggers| G
+    G -->|builds| H
+    H -->|serves| I
+                </div>
+
+                <h3>Job Tracker State Machine</h3>
+                <div class="mermaid">
+stateDiagram-v2
+    [*] --> ApplicationForm
+    
+    ApplicationForm --> Added: Fill form
+    Added --> Applied: Send application
+    Applied --> Reviewing: Recruiter screens
+    
+    Reviewing --> Interview: Pass screen
+    Reviewing --> Rejected: Rejected
+    Rejected --> [*]
+    
+    Interview --> PhoneInterview: Initial call
+    Interview --> TechnicalInterview: Tech assessment
+    
+    PhoneInterview --> TechnicalInterview
+    TechnicalInterview --> Offer: Receive offer
+    
+    Offer --> Negotiating: Negotiate salary
+    Negotiating --> Accepted: Accept offer
+    Negotiating --> Declined: Decline offer
+    
+    Accepted --> [*]
+    Declined --> [*]
+    Offer --> Rejected
                 </div>
 
                 <div class="interview-tip">
-                    <strong>💡 Interview Talking Point:</strong> "I built a complete automation system managing 27 GitHub repos with PowerShell. The resume generator creates tailored .docx/.pdf files in seconds from templates. My 9 portfolio websites showcase modern web dev skills on GitHub Pages."
+                    <strong>💡 Interview Q: "Explain your system architecture"</strong>
+                    <p>Answer: "My architecture is a <strong>four-tier system</strong>: (1) Data Tier: 27 GitHub repositories distributed across monorepo and portfolio repos. (2) Processing Tier: PowerShell scripts for repo sync, Node.js for resume generation. (3) Presentation Tier: 9 HTML/CSS/JS portfolio websites deployed to GitHub Pages. (4) Tracking Tier: Browser-based job tracker using localStorage. Key flows: Sync script fetches/pulls 27 repos in under 2 minutes. Node.js generator creates tailored .docx/.pdf from templates. Git push → GitHub → Actions build → GitHub Pages live. All components are loosely coupled through Git and GitHub."</p>
                 </div>
-
-                <button class="btn" onclick="showModule('structure')">Continue to Module 1 →</button>
             </div>
 
-            <!-- Quick Reference Module -->
+            <!-- MODULE: Git Workflows -->
+            <div class="module" id="module-git">
+                <h2>🔀 Git Workflows <span class="badge intermediate">45 min</span></h2>
+
+                <h3>Daily Git Workflow (5 Commands)</h3>
+
+                <div class="card">
+                    <h4>Step 1: Create Feature Branch</h4>
+                    <pre><code>git checkout -b feature/resume-templates</code></pre>
+                </div>
+
+                <div class="card">
+                    <h4>Step 2: Make Changes</h4>
+                    <pre><code>echo "New resume template" >> resume.template</code></pre>
+                </div>
+
+                <div class="card">
+                    <h4>Step 3: Stage Changes</h4>
+                    <pre><code>git add .</code></pre>
+                </div>
+
+                <div class="card">
+                    <h4>Step 4: Commit with Clear Message</h4>
+                    <pre><code>git commit -m "feat: Add resume template for SRE roles"</code></pre>
+                </div>
+
+                <div class="card">
+                    <h4>Step 5: Push and Create PR</h4>
+                    <pre><code>git push origin feature/resume-templates
+# Then create Pull Request on GitHub for review</code></pre>
+                </div>
+
+                <h3>Commit Message Best Practices</h3>
+                <p>Format: <code>&lt;type&gt;: &lt;subject&gt;</code></p>
+
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>feat:</td>
+                        <td>New feature</td>
+                    </tr>
+                    <tr>
+                        <td>fix:</td>
+                        <td>Bug fix</td>
+                    </tr>
+                    <tr>
+                        <td>docs:</td>
+                        <td>Documentation</td>
+                    </tr>
+                    <tr>
+                        <td>style:</td>
+                        <td>Formatting (no code change)</td>
+                    </tr>
+                    <tr>
+                        <td>refactor:</td>
+                        <td>Code restructuring</td>
+                    </tr>
+                </table>
+
+                <p><strong>Good Example:</strong></p>
+                <pre><code>feat: Add Node.js resume generator with docx/pdf export
+
+- Implement template system for role-specific resumes
+- Add docx and pdfkit integration
+- Support JD keyword extraction and matching
+
+Fixes #42</code></pre>
+
+                <h3>GitHub Flow (Recommended)</h3>
+                <div class="mermaid">
+gitGraph commit id: "Initial"
+    commit id: "v1.0"
+    branch feature/resume-gen
+    checkout feature/resume-gen
+    commit id: "Add generator"
+    commit id: "Add tests"
+    checkout main
+    commit id: "Docs update"
+    checkout feature/resume-gen
+    commit id: "Fix bugs"
+    checkout main
+    merge feature/resume-gen
+    commit id: "v1.1"
+                </div>
+
+                <h3>Flow Steps</h3>
+                <ol>
+                    <li>Create feature branch from main</li>
+                    <li>Commit changes on feature branch</li>
+                    <li>Open Pull Request for review</li>
+                    <li>After approval, merge to main</li>
+                    <li>Deploy from main</li>
+                </ol>
+
+                <h3>Resolving Merge Conflicts</h3>
+
+                <p><strong>Step 1: Identify conflicts</strong></p>
+                <pre><code>git status
+# Shows conflicted files</code></pre>
+
+                <p><strong>Step 2: File shows conflict markers</strong></p>
+                <pre><code><<<<<<< HEAD (current branch)
+## Skills (Main version)
+- Python
+=======
+## Competencies (Feature version)
+- Python
+>>>>>>> feature/portfolio</code></pre>
+
+                <p><strong>Step 3: Resolve in VS Code</strong></p>
+                <p>VS Code shows "Accept Current | Accept Incoming | Accept Both" UI</p>
+
+                <p><strong>Step 4: Stage and complete merge</strong></p>
+                <pre><code>git add resume.md
+git commit -m "Merge feature/portfolio: resolve conflicts"</code></pre>
+
+                <h3>Git Commands Reference</h3>
+                <table>
+                    <tr>
+                        <th>Command</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td><code>git clone &lt;url&gt;</code></td>
+                        <td>Copy repository</td>
+                    </tr>
+                    <tr>
+                        <td><code>git branch -a</code></td>
+                        <td>List all branches</td>
+                    </tr>
+                    <tr>
+                        <td><code>git checkout -b name</code></td>
+                        <td>Create and switch to branch</td>
+                    </tr>
+                    <tr>
+                        <td><code>git add .</code></td>
+                        <td>Stage all changes</td>
+                    </tr>
+                    <tr>
+                        <td><code>git commit -m "msg"</code></td>
+                        <td>Save changes locally</td>
+                    </tr>
+                    <tr>
+                        <td><code>git push origin main</code></td>
+                        <td>Send to GitHub</td>
+                    </tr>
+                    <tr>
+                        <td><code>git pull origin main</code></td>
+                        <td>Fetch and merge updates</td>
+                    </tr>
+                    <tr>
+                        <td><code>git log --oneline</code></td>
+                        <td>Show commit history</td>
+                    </tr>
+                    <tr>
+                        <td><code>git blame file.txt</code></td>
+                        <td>Show who changed each line</td>
+                    </tr>
+                </table>
+
+                <div class="interview-tip">
+                    <strong>💡 Interview Q: "Explain your Git workflow"</strong>
+                    <p>Answer: "I use <strong>GitHub Flow</strong> with feature branches. (1) Create branch: git checkout -b feature/resume-gen. (2) Make atomic commits with clear messages following Conventional Commits (feat:, fix:, docs:). (3) Push to GitHub and create Pull Request for code review. (4) After approval, merge to main and deploy. For 27 repos, my PowerShell script programmatically runs git commands on each repo using 'git -C' to specify directory. Key practices: atomic commits (each can be reverted independently), clear messages, separate branch per feature, merge commits to preserve history."</p>
+                </div>
+            </div>
+
+            <!-- MODULE: Interviews -->
+            <div class="module" id="module-interviews">
+                <h2>🎤 Interview Guide <span class="badge">30 min</span></h2>
+
+                <h3>Question 1: "Tell me about a project demonstrating DevOps skills"</h3>
+
+                <div class="card">
+                    <h4>Your Answer (STAR Method):</h4>
+                    <p><strong>Situation:</strong> I built a comprehensive automation system managing 27 GitHub repositories and generating tailored resumes for job applications.</p>
+                    
+                    <p><strong>Task:</strong> The challenge was: manually syncing repos was time-consuming, resume versioning was repetitive, and I had no centralized job tracking system.</p>
+                    
+                    <p><strong>Action:</strong> I built three main systems:</p>
+                    <ul>
+                        <li><strong>Repository Sync Script (PowerShell):</strong> Automated fetching/pulling from 27 GitHub repos</li>
+                        <li><strong>Resume Generator (Node.js):</strong> Creates tailored .docx/.pdf from templates using JD keywords</li>
+                        <li><strong>Portfolio Deployer (Git + GitHub Pages):</strong> Deployed 9 role-based websites with dark mode</li>
+                    </ul>
+                    
+                    <p><strong>Result:</strong> Reduced manual work by 95%, automated resume generation in seconds, created scalable portfolio system. Demonstrates Git, PowerShell, Node.js, web development, and DevOps practices.</p>
+                </div>
+
+                <h3>Question 2: "Explain your Git workflow and branching strategy"</h3>
+
+                <div class="card">
+                    <h4>Your Answer (1 minute):</h4>
+                    <p>"I use <strong>GitHub Flow</strong> with feature branches: (1) Create branch from main, (2) Commit atomically with clear messages, (3) Push and create Pull Request for review, (4) After approval, merge to main, (5) Automatic deployment."</p>
+                    
+                    <h4>Technical Details:</h4>
+                    <ul>
+                        <li><strong>Branching:</strong> Separate branch per feature</li>
+                        <li><strong>Commits:</strong> Atomic commits (one logical change per commit)</li>
+                        <li><strong>Messages:</strong> Follow Conventional Commits (feat:, fix:, docs:)</li>
+                        <li><strong>Merging:</strong> Use merge commits to preserve history</li>
+                        <li><strong>Conflict Resolution:</strong> VS Code merge UI for clarity</li>
+                    </ul>
+                </div>
+
+                <h3>Question 3: "Show me a PowerShell script you've written"</h3>
+
+                <div class="card">
+                    <h4>Demo Script (Sync-GitHub-Repos.ps1):</h4>
+                    <pre><code>param(
+    [string]$SyncType = "all",
+    [switch]$DryRun
+)
+
+$repos = @(
+    @{name="personal_rdammala"; url="https://github.com/rdammala/personal_rdammala"},
+    @{name="Senior-Manager-SRE"; url="https://github.com/rdammala/Senior-Manager-SRE"}
+    # ... 25 more repos
+)
+
+foreach ($repo in $repos) {
+    Write-Host "Processing: $($repo.name)"
+    
+    try {
+        if (-not (Test-Path $repo.name)) {
+            if (-not $DryRun) {
+                git clone $repo.url
+            }
+            Write-Host "  [NEW] Cloned repository"
+        }
+        else {
+            if (-not $DryRun) {
+                git -C $repo.name fetch origin
+                git -C $repo.name pull origin main
+            }
+            Write-Host "  [SYNCED] Updated from remote"
+        }
+    }
+    catch {
+        Write-Host "  [ERROR] $_" -ForegroundColor Red
+    }
+}
+
+Write-Host "Sync complete!" -ForegroundColor Green</code></pre>
+
+                    <p><strong>Key Points to Highlight:</strong></p>
+                    <ul>
+                        <li>Error handling with try-catch</li>
+                        <li>Parameterization (SyncType, DryRun)</li>
+                        <li>Idempotent design (safe to run multiple times)</li>
+                        <li>Clear status messages</li>
+                        <li>Git command usage with -C flag</li>
+                        <li>Array iteration</li>
+                    </ul>
+                </div>
+
+                <h3>Question 4: "How do you handle errors in your scripts?"</h3>
+
+                <div class="card">
+                    <h4>Error Handling Strategies:</h4>
+                    
+                    <p><strong>1. Try-Catch Blocks:</strong></p>
+                    <pre><code>try {
+    git -C $repo.name pull origin main
+}
+catch {
+    Write-Host "Error pulling $($repo.name): $_"
+    $errors++
+}</code></pre>
+
+                    <p><strong>2. Exit Code Checking:</strong></p>
+                    <pre><code>if ($LASTEXITCODE -ne 0) {
+    Write-Host "Git command failed"
+}</code></pre>
+
+                    <p><strong>3. Input Validation:</strong></p>
+                    <pre><code>if (-not (Test-Path $path)) {
+    Write-Host "Directory not found"
+    return
+}</code></pre>
+
+                    <p><strong>4. Dry-Run Mode:</strong> Preview changes before executing</p>
+                    <p><strong>5. Logging:</strong> Log all operations with timestamps</p>
+                </div>
+
+                <h3>Question 5: "What's your most proud achievement?"</h3>
+
+                <div class="card">
+                    <h4>Your Answer:</h4>
+                    <p><strong>Achievement 1: Automation Impact</strong></p>
+                    <ul>
+                        <li>Reduced manual resume versioning from 2 hours to 2 minutes</li>
+                        <li>Automated sync of 27 repos (was manual)</li>
+                        <li>95% reduction in repetitive work</li>
+                    </ul>
+
+                    <p><strong>Achievement 2: Knowledge Transfer</strong></p>
+                    <ul>
+                        <li>Created 88 learning documents for SRE/DevOps interview prep</li>
+                        <li>Built interactive learning hub with architecture diagrams</li>
+                        <li>Designed 7 Mermaid diagrams for visualization</li>
+                    </ul>
+
+                    <p><strong>Achievement 3: Production System</strong></p>
+                    <ul>
+                        <li>9 portfolio websites live on GitHub Pages</li>
+                        <li>Scalable architecture ready for CI-CD</li>
+                        <li>Infrastructure as Code with Bicep templates</li>
+                        <li>Complete SDLC demonstrated</li>
+                    </ul>
+                </div>
+
+                <h3>Live Demo Scripts</h3>
+
+                <div class="quick-ref">
+                    <h4>🎬 Demo 1: Git Workflow (5 minutes)</h4>
+                    <pre><code>git status              # Show current state
+git checkout -b feature/demo    # Create branch
+echo "Demo" >> demo.txt        # Make changes
+git add .                       # Stage changes
+git commit -m "feat: Demo"     # Commit
+git push origin feature/demo    # Push
+git log --oneline --graph -5   # Show history</code></pre>
+                </div>
+
+                <div class="quick-ref">
+                    <h4>🎬 Demo 2: PowerShell Script (3 minutes)</h4>
+                    <pre><code>cat Sync-GitHub-Repos.ps1 | head -30
+.\Sync-GitHub-Repos.ps1 -SyncType all -DryRun
+.\Sync-GitHub-Repos.ps1 -SyncType all
+dir C:\rdammala\personal_rdammala | Measure-Object</code></pre>
+                </div>
+
+                <div class="quick-ref">
+                    <h4>🎬 Demo 3: Portfolio Website (3 minutes)</h4>
+                    <pre><code># Open in browser
+https://rdammala.github.io/Senior-Manager-SRE/
+
+# Click download resume button
+# Toggle dark/light mode
+# Show responsive design on mobile
+# Show source code: index.html, style.css, script.js</code></pre>
+                </div>
+            </div>
+
+            <!-- MODULE: Quick Reference -->
             <div class="module" id="module-quickref">
-                <h2>⚡ Quick Reference Cards</h2>
+                <h2>📋 Quick Reference <span class="badge">5 min</span></h2>
 
                 <h3>Git Commands Cheat Sheet</h3>
-                <div class="quick-ref">
-                    <h4>🔧 Essential Git Commands</h4>
-                    <pre><code>git clone &lt;URL&gt;              # Clone repository
+                <pre><code>git clone &lt;URL&gt;              # Clone repository
 git add .                     # Stage all changes
 git commit -m "message"       # Commit changes
 git push origin main          # Push to remote
 git pull origin main          # Fetch and merge
 git branch -a                 # List all branches
-git checkout -b feature/name  # Create new branch
-git merge feature/name        # Merge branch to main
+git checkout -b feature       # Create new branch
+git merge feature             # Merge branch
 git log --oneline             # Show commit history
-git status                    # Show repo status</code></pre>
+git status                    # Show repo status
+git diff                      # Show unstaged changes
+git stash                     # Temporarily save changes
+git blame file.txt            # Show who changed each line</code></pre>
+
+                <h3>PowerShell Scripting Patterns</h3>
+                <pre><code>$variable = "value"                    # Variables
+foreach ($item in $array) { }        # Loops
+try { } catch { }                    # Error handling
+Test-Path $path                      # Check existence
+git -C $path pull                    # Git in directory
+Write-Host "message"                 # Output text
+if ($condition) { }                  # Conditionals</code></pre>
+
+                <h3>Interview Quick Answers</h3>
+
+                <div class="card">
+                    <h4>Q: "Tell me about your Git workflow"</h4>
+                    <p>A: "GitHub Flow with feature branches, atomic commits, pull requests for review, merge to main after approval."</p>
                 </div>
 
-                <h3>PowerShell Scripting Basics</h3>
-                <div class="quick-ref">
-                    <h4>🔧 Common PowerShell Patterns</h4>
-                    <pre><code># Variables
-$repos = @("repo1", "repo2")
-
-# Loops
-foreach ($repo in $repos) {
-    Write-Host "Syncing $repo"
-    git -C $repo pull
-}
-
-# Error handling
-try {
-    git clone $url
-} catch {
-    Write-Host "Error: $_"
-}
-
-# String interpolation
-$message = "Hello $name"</code></pre>
+                <div class="card">
+                    <h4>Q: "How do you approach DevOps?"</h4>
+                    <p>A: "Automation first, infrastructure as code, continuous deployment, monitoring, documentation."</p>
                 </div>
 
-                <h3>GitHub Pages Deployment</h3>
-                <div class="quick-ref">
-                    <h4>🚀 Deployment Checklist</h4>
-                    <ul>
-                        <li>✅ Files committed to git repo</li>
-                        <li>✅ index.html in repo root</li>
-                        <li>✅ style.css linked (external, not inline)</li>
-                        <li>✅ GitHub Pages enabled (repo settings)</li>
-                        <li>✅ Wait 1-2 minutes for build</li>
-                        <li>✅ Test at https://rdammala.github.io/&lt;RepoName&gt;</li>
-                    </ul>
+                <div class="card">
+                    <h4>Q: "How would you scale this system?"</h4>
+                    <p>A: "Monorepo with filtering, parallel processing, serverless functions, cloud database, CI-CD automation with GitHub Actions."</p>
                 </div>
 
-                <h3>Markdown Formatting</h3>
-                <div class="quick-ref">
-                    <h4>📝 Common Markdown Syntax</h4>
-                    <pre><code># Heading 1
-## Heading 2
-### Heading 3
-
-**Bold** or __Bold__
-*Italic* or _Italic_
-`Inline code`
-
-- Bullet point
-  - Nested
-    - Deeper
-
-[Link text](https://example.com)
-![Image alt](image.png)
-
-| Header | Header |
-|--------|--------|
-| Cell   | Cell   |</code></pre>
+                <div class="card">
+                    <h4>Q: "How do you handle errors?"</h4>
+                    <p>A: "Try-catch blocks, exit code checking, input validation, dry-run mode for preview, comprehensive logging."</p>
                 </div>
 
-                <h3>Common Interview Questions</h3>
-                <div class="quick-ref">
-                    <h4>❓ Questions You Should Know</h4>
-                    <ul>
-                        <li>Q: "Tell me about your Git workflow"</li>
-                        <li>A: "I use feature branches, pull requests for review, merge to main after approval"</li>
-                        <br>
-                        <li>Q: "Explain your CI/CD pipeline"</li>
-                        <li>A: "GitHub Actions triggers on push: runs tests, builds artifacts, deploys to GitHub Pages"</li>
-                        <br>
-                        <li>Q: "How do you handle errors in scripts?"</li>
-                        <li>A: "Try-catch blocks, error logging, retry logic with exponential backoff"</li>
-                    </ul>
-                </div>
+                <h3>GitHub Pages Deployment Checklist</h3>
+                <ul>
+                    <li>✅ Files committed to git repo</li>
+                    <li>✅ index.html in repo root</li>
+                    <li>✅ style.css linked (external, not inline)</li>
+                    <li>✅ GitHub Pages enabled in repo settings</li>
+                    <li>✅ Wait 1-2 minutes for build</li>
+                    <li>✅ Test at https://rdammala.github.io/&lt;RepoName&gt;</li>
+                    <li>✅ Download button works (PDF accessible)</li>
+                    <li>✅ Dark mode toggle works with localStorage</li>
+                </ul>
 
-                <button class="btn" onclick="showModule('overview')">← Back to Overview</button>
+                <h3>Resume Generation Workflow</h3>
+                <ol>
+                    <li>Parse JD → Extract keywords (Python, Docker, Kubernetes, etc.)</li>
+                    <li>Select resume template (SRE_Manager_v1, DevOps_Lead_v2, etc.)</li>
+                    <li>Fill placeholders with tailored content matching JD</li>
+                    <li>Generate .docx using docx package</li>
+                    <li>Generate .pdf using pdfkit</li>
+                    <li>Output: Rajesh_Dammala_&lt;Company&gt;_Resume_v1.docx + .pdf</li>
+                </ol>
             </div>
 
-            <!-- Interview Guide Module -->
-            <div class="module" id="module-interviews">
-                <h2>9️⃣ Interview Guide</h2>
-                
-                <h3>Question 1: "Tell me about a project where you used Git"</h3>
-                <div class="card">
-                    <strong>Your Answer (2-3 minutes):</strong>
-                    <p>"I built an automation system managing 27 GitHub repositories using Git. The project includes:</p>
-                    <ul>
-                        <li>PowerShell sync script that clones, fetches, and pulls updates from all 27 repos</li>
-                        <li>9 role-based portfolio repositories deployed to GitHub Pages</li>
-                        <li>Monorepo pattern with learning materials, scripts, and infrastructure code</li>
-                    </ul>
-                    <p>Key Git skills demonstrated:</p>
-                    <ul>
-                        <li>Branching strategy (main + feature branches)</li>
-                        <li>Commit hygiene (atomic commits, clear messages)</li>
-                        <li>Merge conflict resolution</li>
-                        <li>Idempotent sync operations (safe to run multiple times)</li>
-                    </ul>
-                </div>
+            <!-- MODULE: Project Stats -->
+            <div class="module" id="module-stats">
+                <h2>📊 Project Statistics</h2>
 
-                <h3>Question 2: "Explain your PowerShell automation script"</h3>
-                <div class="card">
-                    <strong>Your Answer (2-3 minutes):</strong>
-                    <p>"My Sync-GitHub-Repos.ps1 script demonstrates error handling and batch processing:</p>
-                    <pre><code>foreach ($repo in $repositories) {
-    # Clone if missing
-    if (-not (Test-Path $repo.path)) {
-        git clone $repo.url
-    }
-    # Pull if exists
-    else {
-        git -C $repo.path fetch origin
-        git -C $repo.path pull origin main
-    }
-}</code></pre>
-                    <p>Key features:</p>
-                    <ul>
-                        <li>Idempotent design (safe to run multiple times)</li>
-                        <li>Error handling with try-catch</li>
-                        <li>Dry-run mode for preview</li>
-                        <li>Status reporting</li>
-                    </ul>
-                </div>
+                <h3>By The Numbers</h3>
+                <table>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                        <th>How to Explain in Interview</th>
+                    </tr>
+                    <tr>
+                        <td>GitHub Repos Managed</td>
+                        <td>27</td>
+                        <td>"Automated synchronization using PowerShell"</td>
+                    </tr>
+                    <tr>
+                        <td>Portfolio Websites</td>
+                        <td>9</td>
+                        <td>"Created role-based websites with HTML/CSS/JS"</td>
+                    </tr>
+                    <tr>
+                        <td>Resumes Generated</td>
+                        <td>10+</td>
+                        <td>"Built templating engine supporting .docx/.pdf"</td>
+                    </tr>
+                    <tr>
+                        <td>Learning Documents</td>
+                        <td>88</td>
+                        <td>"Curated comprehensive DevOps/Git learning materials"</td>
+                    </tr>
+                    <tr>
+                        <td>Total Lines of Code</td>
+                        <td>5000+</td>
+                        <td>"PowerShell, Node.js, HTML/CSS/JS"</td>
+                    </tr>
+                    <tr>
+                        <td>Automated Workflows</td>
+                        <td>5</td>
+                        <td>"Repo sync, resume gen, portfolio deploy, job track, learning hub"</td>
+                    </tr>
+                    <tr>
+                        <td>Time Saved</td>
+                        <td>95%</td>
+                        <td>"Automated resume versioning reduces manual work"</td>
+                    </tr>
+                    <tr>
+                        <td>Deployment Platform</td>
+                        <td>GitHub Pages</td>
+                        <td>"Static hosting with global CDN"</td>
+                    </tr>
+                </table>
 
-                <h3>Question 3: "How do you approach documentation?"</h3>
-                <div class="card">
-                    <strong>Your Answer (1-2 minutes):</strong>
-                    <p>"I practice 'documentation as code':</p>
-                    <ul>
-                        <li>Markdown files version-controlled in Git</li>
-                        <li>Clear folder structure with numbered modules (0-PROJECT-OVERVIEW.md)</li>
-                        <li>Code examples with syntax highlighting</li>
-                        <li>README.md at each level (root, components, portfolios)</li>
-                        <li>Automated diagram generation (Mermaid)</li>
-                    </ul>
-                    <p>This project includes 88 learning documents explaining Git, CI-CD, Bicep, and DevOps concepts."</p>
-                </div>
+                <h3>Tech Stack Breakdown</h3>
+                <table>
+                    <tr>
+                        <th>Component</th>
+                        <th>Technology</th>
+                        <th>Why Chosen</th>
+                    </tr>
+                    <tr>
+                        <td>Version Control</td>
+                        <td>Git, GitHub</td>
+                        <td>Industry standard, free hosting, CI-CD ready</td>
+                    </tr>
+                    <tr>
+                        <td>Automation</td>
+                        <td>PowerShell 7.x</td>
+                        <td>Cross-platform, Azure integration</td>
+                    </tr>
+                    <tr>
+                        <td>Resume Generation</td>
+                        <td>Node.js, docx, pdfkit</td>
+                        <td>Templating, programmatic file creation</td>
+                    </tr>
+                    <tr>
+                        <td>Portfolios</td>
+                        <td>HTML5, CSS3, Vanilla JS</td>
+                        <td>No dependencies, fast, GitHub Pages compatible</td>
+                    </tr>
+                    <tr>
+                        <td>Infrastructure</td>
+                        <td>Bicep, Azure CLI</td>
+                        <td>Infrastructure as Code, Azure-native</td>
+                    </tr>
+                    <tr>
+                        <td>Documentation</td>
+                        <td>Markdown</td>
+                        <td>Version-controlled, readable, web-convertible</td>
+                    </tr>
+                    <tr>
+                        <td>Hosting</td>
+                        <td>GitHub Pages</td>
+                        <td>Free, automatic deployment, built-in CDN</td>
+                    </tr>
+                </table>
 
-                <h3>Live Demo Scripts</h3>
+                <h3>Learning Material Statistics</h3>
+                <table>
+                    <tr>
+                        <th>Module</th>
+                        <th>Duration</th>
+                        <th>Topics</th>
+                    </tr>
+                    <tr>
+                        <td>Project Overview</td>
+                        <td>15 min</td>
+                        <td>Goals, SDLC phases, tech stack</td>
+                    </tr>
+                    <tr>
+                        <td>Repository Structure</td>
+                        <td>20 min</td>
+                        <td>Organization, conventions, file types</td>
+                    </tr>
+                    <tr>
+                        <td>Architecture</td>
+                        <td>25 min</td>
+                        <td>System design, 7 Mermaid diagrams</td>
+                    </tr>
+                    <tr>
+                        <td>Git Workflows</td>
+                        <td>45 min</td>
+                        <td>Branching, merging, conflict resolution</td>
+                    </tr>
+                    <tr>
+                        <td>Interview Guide</td>
+                        <td>30 min</td>
+                        <td>Top 10 Q&A, demo scripts, talking points</td>
+                    </tr>
+                </table>
+
+                <p><strong>Total Learning Time:</strong> 7+ hours (recommended pace)</p>
+            </div>
+
+            <!-- MODULE: Interview Checklist -->
+            <div class="module" id="module-checklist">
+                <h2>✅ Interview Preparation Checklist</h2>
+
+                <h3>Week 1: Learning Phase</h3>
                 <div class="quick-ref">
-                    <h4>🎬 Demo 1: Git Workflow (5 minutes)</h4>
-                    <pre><code># Show status
-git status
-
-# Create feature branch
-git checkout -b feature/demo
-
-# Make changes
-echo "Demo content" >> demo.txt
-
-# Stage and commit
-git add .
-git commit -m "Add demo content"
-
-# Push
-git push origin feature/demo
-
-# Show logs
-git log --oneline --graph -5</code></pre>
+                    <h4>Monday-Tuesday</h4>
+                    <ul>
+                        <li>☐ Read LEARNING_HUB.md</li>
+                        <li>☐ Complete Module 0: Project Overview</li>
+                        <li>☐ Complete Module 1: Repository Structure</li>
+                        <li>☐ Take notes on key concepts</li>
+                    </ul>
                 </div>
 
                 <div class="quick-ref">
-                    <h4>🎬 Demo 2: Repository Sync (3 minutes)</h4>
-                    <pre><code># Show script
-cat Sync-GitHub-Repos.ps1 | head -30
-
-# Dry-run preview
-.\Sync-GitHub-Repos.ps1 -SyncType all -DryRun
-
-# Run sync
-.\Sync-GitHub-Repos.ps1 -SyncType all
-
-# Show results
-dir C:\rdammala\personal_rdammala | Measure-Object</code></pre>
+                    <h4>Wednesday-Thursday</h4>
+                    <ul>
+                        <li>☐ Study Module: Architecture (all 7 diagrams)</li>
+                        <li>☐ Draw architecture on paper/whiteboard</li>
+                        <li>☐ Understand each component and data flow</li>
+                        <li>☐ Create mind map of system</li>
+                    </ul>
                 </div>
+
+                <div class="quick-ref">
+                    <h4>Friday</h4>
+                    <ul>
+                        <li>☐ Complete Module 2: Git Workflows</li>
+                        <li>☐ Run git commands locally</li>
+                        <li>☐ Practice creating feature branches</li>
+                        <li>☐ Review merge conflict resolution</li>
+                    </ul>
+                </div>
+
+                <h3>Week 2: Deep Dive</h3>
+                <div class="quick-ref">
+                    <h4>Monday-Wednesday</h4>
+                    <ul>
+                        <li>☐ Study PowerShell scripting patterns</li>
+                        <li>☐ Run Sync-GitHub-Repos.ps1 with -DryRun</li>
+                        <li>☐ Understand error handling in scripts</li>
+                        <li>☐ Clone 1-2 portfolio repos locally</li>
+                    </ul>
+                </div>
+
+                <div class="quick-ref">
+                    <h4>Thursday-Friday</h4>
+                    <ul>
+                        <li>☐ Open portfolio websites in browser</li>
+                        <li>☐ Test dark/light mode toggle</li>
+                        <li>☐ Click download resume button</li>
+                        <li>☐ View HTML/CSS/JS source code</li>
+                    </ul>
+                </div>
+
+                <h3>Week 3: Interview Prep</h3>
+                <div class="quick-ref">
+                    <h4>Monday-Tuesday</h4>
+                    <ul>
+                        <li>☐ Read Module 9: Interview Guide</li>
+                        <li>☐ Study top 10 Q&A with answers</li>
+                        <li>☐ Understand STAR method framework</li>
+                        <li>☐ Practice 2-3 minute pitch</li>
+                    </ul>
+                </div>
+
+                <div class="quick-ref">
+                    <h4>Wednesday</h4>
+                    <ul>
+                        <li>☐ Record 2-3 minute explanation of project</li>
+                        <li>☐ Prepare live demos (Git, PowerShell, Portfolio)</li>
+                        <li>☐ Have all systems ready to show</li>
+                        <li>☐ Test screen sharing setup</li>
+                    </ul>
+                </div>
+
+                <div class="quick-ref">
+                    <h4>Thursday-Friday</h4>
+                    <ul>
+                        <li>☐ Mock interview with friend/mentor</li>
+                        <li>☐ Practice explaining project in real-time</li>
+                        <li>☐ Run live demos during mock interview</li>
+                        <li>☐ Get feedback and refine answers</li>
+                    </ul>
+                </div>
+
+                <h3>Before Real Interview</h3>
+                <div class="quick-ref">
+                    <h4>Day Before</h4>
+                    <ul>
+                        <li>☐ Review quick reference cards</li>
+                        <li>☐ Practice 2-min pitch once more</li>
+                        <li>☐ Have portfolio URLs memorized</li>
+                        <li>☐ Prepare whiteboard markers for diagrams</li>
+                        <li>☐ Get good sleep!</li>
+                    </ul>
+                </div>
+
+                <div class="quick-ref">
+                    <h4>Day Of Interview</h4>
+                    <ul>
+                        <li>☐ Have portfolio websites open in browser</li>
+                        <li>☐ Terminal ready with git and PowerShell</li>
+                        <li>☐ VS Code open with project code</li>
+                        <li>☐ Whiteboard visible for drawing</li>
+                        <li>☐ Good lighting and clear microphone</li>
+                        <li>☐ Calm and confident mindset</li>
+                    </ul>
+                </div>
+
+                <h3>Success Criteria</h3>
+                <p>After completing this learning hub, you should be able to:</p>
+                <ul>
+                    <li>✅ Explain entire project in 2-3 minutes</li>
+                    <li>✅ Draw system architecture on whiteboard</li>
+                    <li>✅ Discuss Git workflow and branching strategies</li>
+                    <li>✅ Explain PowerShell automation and error handling</li>
+                    <li>✅ Run live demos of Git, scripts, and portfolios</li>
+                    <li>✅ Answer 10+ common interview questions</li>
+                    <li>✅ Articulate why specific technologies were chosen</li>
+                    <li>✅ Discuss scaling strategy and improvements</li>
+                    <li>✅ Share portfolio links confidently with recruiters</li>
+                    <li>✅ Pass technical interviews for SRE/DevOps roles</li>
+                </ul>
 
                 <div class="interview-tip">
-                    <strong>💡 Pro Tip:</strong> During interviews, prepare to share your screen and show the GitHub repos, portfolio websites, and scripts. Have git log history available to discuss commits and branching strategy.
+                    <strong>💡 Final Tip:</strong> Remember, interviewers care about your <strong>problem-solving approach</strong>, not perfection. Be ready to discuss: Why you built this? What challenges you faced? How you overcame them? What you learned? What you'd do differently? This shows growth mindset and practical experience.
                 </div>
-
-                <button class="btn" onclick="showModule('overview')">← Back to Overview</button>
-            </div>
-
-            <!-- Placeholder for other modules -->
-            <div class="module" id="module-structure">
-                <h2>1️⃣ Repository Structure</h2>
-                <p>📖 Full content available in: <code>LEARNING_GUIDES/1-REPOSITORY-STRUCTURE.md</code></p>
-                <p>This module covers folder organization, naming conventions, and best practices.</p>
-                <button class="btn" onclick="showModule('overview')">← Back</button>
-            </div>
-
-            <div class="module" id="module-architecture">
-                <h2>🏗️ Architecture & Diagrams</h2>
-                <p>📖 Full content available in: <code>LEARNING_GUIDES/ARCHITECTURE.md</code></p>
-                <p>This module includes 7 Mermaid diagrams showing system flows and components.</p>
-                <button class="btn" onclick="showModule('overview')">← Back</button>
-            </div>
-
-            <div class="module" id="module-git">
-                <h2>2️⃣ Git Workflows</h2>
-                <p>📖 Full content available in: <code>LEARNING_GUIDES/2-GIT-WORKFLOWS.md</code></p>
-                <p>This module covers Git commands, branching strategies, and conflict resolution.</p>
-                <button class="btn" onclick="showModule('overview')">← Back</button>
-            </div>
-
-            <div class="module" id="module-scripting">
-                <h2>3️⃣ Scripting & Automation</h2>
-                <p>📖 Full content available in: <code>LEARNING_GUIDES/3-SCRIPTING-AUTOMATION.md</code></p>
-                <p>This module covers PowerShell scripting, error handling, and batch processing.</p>
-                <button class="btn" onclick="showModule('overview')">← Back</button>
-            </div>
-
-            <div class="module" id="module-bicep">
-                <h2>4️⃣ Infrastructure as Code (Bicep)</h2>
-                <p>📖 Full content available in: <code>LEARNING_GUIDES/4-INFRASTRUCTURE-AS-CODE.md</code></p>
-                <p>This module covers Bicep syntax and Azure resource deployment.</p>
-                <button class="btn" onclick="showModule('overview')">← Back</button>
-            </div>
-
-            <div class="module" id="module-portfolio">
-                <h2>5️⃣ Portfolio Generation & Deployment</h2>
-                <p>📖 Full content available in: <code>LEARNING_GUIDES/5-PORTFOLIO-GENERATION.md</code></p>
-                <p>This module covers resume generation, GitHub Pages deployment, and website best practices.</p>
-                <button class="btn" onclick="showModule('overview')">← Back</button>
-            </div>
-
-            <div class="module" id="module-cicd">
-                <h2>6️⃣ CI-CD Pipelines</h2>
-                <p>📖 Full content available in: <code>LEARNING_GUIDES/6-CI-CD-PIPELINE.md</code></p>
-                <p>This module covers GitHub Actions, YAML configuration, and automated workflows.</p>
-                <button class="btn" onclick="showModule('overview')">← Back</button>
-            </div>
-
-            <div class="module" id="module-web">
-                <h2>7️⃣ Web Development</h2>
-                <p>📖 Full content available in: <code>LEARNING_GUIDES/7-WEB-DEVELOPMENT.md</code></p>
-                <p>This module covers HTML/CSS/JS, dark mode implementation, and accessibility.</p>
-                <button class="btn" onclick="showModule('overview')">← Back</button>
-            </div>
-
-            <div class="module" id="module-sdlc">
-                <h2>8️⃣ Complete SDLC</h2>
-                <p>📖 Full content available in: <code>LEARNING_GUIDES/8-SDLC-COMPLETE.md</code></p>
-                <p>This module covers design patterns, testing, versioning, and release management.</p>
-                <button class="btn" onclick="showModule('overview')">← Back</button>
             </div>
         </main>
     </div>
 
     <footer>
-        <p>📚 Personal RD Project Learning Hub — Last Updated: 2026-06-19</p>
-        <p>💡 Study Time: ~7 hours | Difficulty: Beginner to Intermediate</p>
+        <p>📚 Personal RD Project Learning Hub — Complete Learning System</p>
+        <p>💡 Study Time: 7-10 hours | Interview Ready: After completing all modules</p>
+        <p>🚀 Last Updated: 2026-06-19 | Version: 2.0 (Complete HTML)</p>
     </footer>
 
     <script>
-        // Initialize mermaid
+        // Initialize Mermaid
         mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        hljs.highlightAll();
 
         // Theme Toggle
         function toggleTheme() {
             const isDark = document.body.classList.toggle('light-mode');
-            const btn = document.querySelector('.theme-toggle');
+            const btn = document.querySelector('.btn-group button:last-child');
             btn.textContent = isDark ? '☀️ Light' : '🌙 Dark';
             localStorage.setItem('theme', isDark ? 'light' : 'dark');
+            
+            // Reinitialize mermaid with new theme
+            document.querySelectorAll('.mermaid').forEach(el => {
+                el.removeAttribute('data-processed');
+            });
+            mermaid.contentLoaded();
         }
 
         // Load saved theme
@@ -864,37 +1701,8 @@ dir C:\rdammala\personal_rdammala | Measure-Object</code></pre>
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'light') {
                 document.body.classList.add('light-mode');
-                document.querySelector('.theme-toggle').textContent = '☀️ Light';
-                applyLightModeToAll();
+                document.querySelector('.btn-group button:last-child').textContent = '☀️ Light';
             }
-        }
-
-        function applyLightModeToAll() {
-            document.querySelectorAll('.sidebar, .content, .search-container, input').forEach(el => {
-                el.classList.add('light-mode');
-            });
-            document.querySelectorAll('.stat-card, .card').forEach(el => {
-                el.classList.add('light-mode');
-            });
-        }
-
-        // Search Toggle
-        function toggleSearch() {
-            document.getElementById('searchContainer').classList.toggle('active');
-        }
-
-        // Filter Modules
-        function filterModules() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const modules = document.querySelectorAll('.sidebar a');
-            
-            modules.forEach(link => {
-                if (link.textContent.toLowerCase().includes(input) || input === '') {
-                    link.style.display = 'block';
-                } else {
-                    link.style.display = 'none';
-                }
-            });
         }
 
         // Show Module
@@ -911,26 +1719,39 @@ dir C:\rdammala\personal_rdammala | Measure-Object</code></pre>
             }
 
             // Update sidebar highlight
-            document.querySelectorAll('.sidebar a').forEach(link => {
+            document.querySelectorAll('.nav-item').forEach(link => {
                 link.classList.remove('active');
             });
             event.target.classList.add('active');
 
             // Scroll to top
-            document.querySelector('.content').scrollTop = 0;
+            document.querySelector('.content-container').scrollTop = 0;
+
+            // Reinitialize Mermaid for new content
+            mermaid.contentLoaded();
+            hljs.highlightAll();
         }
 
-        // Quiz Mode
-        function startQuiz() {
-            alert('🎯 Quiz Mode Coming Soon!\n\nQuiz topics:\n✓ Git Workflows\n✓ CI-CD Concepts\n✓ Infrastructure as Code\n✓ DevOps Best Practices\n\nMean time: 15 minutes');
-        }
+        // Global Search
+        document.getElementById('globalSearch').addEventListener('keyup', function() {
+            const searchTerm = this.value.toLowerCase();
+            const modules = document.querySelectorAll('.module');
+            
+            if (searchTerm === '') {
+                modules.forEach(mod => mod.style.display = 'block');
+                return;
+            }
+
+            modules.forEach(mod => {
+                const content = mod.textContent.toLowerCase();
+                mod.style.display = content.includes(searchTerm) ? 'block' : 'none';
+            });
+        });
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             initTheme();
-            
-            // Set first module as active
-            document.querySelector('.sidebar a').click();
+            showModule('overview');
         });
     </script>
 </body>
