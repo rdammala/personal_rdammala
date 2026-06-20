@@ -617,6 +617,7 @@
                 <input type="text" id="globalSearch" placeholder="🔍 Search all content...">
             </div>
             <div class="btn-group">
+                <button onclick="window.open('https://github.com/rdammala/personal_rdammala', '_blank')">🔗 GitHub Repo</button>
                 <button class="secondary" onclick="toggleTheme()">🌙 Dark</button>
             </div>
         </div>
@@ -837,81 +838,80 @@
                 <h3>High-Level System Architecture</h3>
                 <div class="mermaid">
 graph TB
-    subgraph "Data Layer"
-        A["27 GitHub Repos<br/>(distributed)"]
-        B["Local Git Repos<br/>(cloned)"]
+    subgraph DL["Data Layer"]
+        A["27 Repos"]
+        B["Local Clones"]
     end
     
-    subgraph "Processing Layer"
-        C["PowerShell<br/>Sync Script"]
-        D["Node.js<br/>Resume Generator"]
-        E["GitHub Actions<br/>(future)"]
+    subgraph PL["Processing Layer"]
+        C["PowerShell\nSync"]
+        D["Node.js\nGenerator"]
+        E["GitHub\nActions"]
     end
     
-    subgraph "Presentation Layer"
-        F["9 Portfolio<br/>Websites"]
-        G["Job Tracker<br/>Web App"]
+    subgraph PR["Presentation Layer"]
+        F["9 Portfolios"]
+        G["Job Tracker"]
     end
     
-    subgraph "Deployment"
-        H["GitHub Pages<br/>(static hosting)"]
-        I["GitHub Repos<br/>(version control)"]
+    subgraph DP["Deployment"]
+        H["GitHub Pages"]
+        I["GitHub Repos"]
     end
     
-    A -->|git clone| B
-    B -->|PowerShell| C
-    C -->|sync status| A
+    A -->|clone| B
+    B -->|sync| C
+    C -->|status| A
     D -->|generate| F
     D -->|generate| G
-    F -->|git push| I
-    I -->|builds| H
-    G -->|stores| H
-    E -.->|future automation| C
-    E -.->|future automation| D
+    F -->|push| I
+    I -->|build| H
+    G -->|store| H
+    E -.->|future| C
+    E -.->|future| D
                 </div>
 
                 <h3>Repository Sync Flow</h3>
                 <div class="mermaid">
 sequenceDiagram
     participant User
-    participant Script as PowerShell Script
+    participant Script as PowerShell
     participant Git as Git CLI
-    participant GitHub as GitHub
-    participant Local as Local Repos
+    participant GitHub
+    participant Local
     
-    User->>Script: .\Sync-GitHub-Repos.ps1
-    Script->>Script: Load repo list (27 repos)
-    Script->>Script: For each repo:
+    User->>Script: Run Sync Script
+    Script->>Script: Load repo list
+    Script->>Script: Loop 27 repos
     
-    alt Repo exists locally?
-        Script->>Git: git fetch origin
-        Git->>GitHub: Check for updates
+    alt Repo exists
+        Script->>Git: fetch origin
+        Git->>GitHub: Check updates
         GitHub-->>Git: Latest commits
         Git-->>Local: Update refs
-        Script->>Git: git pull origin main
-        Git->>Local: Merge changes
+        Script->>Git: pull origin
+        Git->>Local: Merge
     else Repo missing
-        Script->>Git: git clone <URL>
-        Git->>GitHub: Download repo
-        GitHub-->>Local: Full history
+        Script->>Git: clone URL
+        Git->>GitHub: Download
+        GitHub-->>Local: History
     end
     
-    Script->>Script: Report sync status
-    Script-->>User: ✅ Sync complete (27/27)
+    Script->>User: Done 27/27
                 </div>
 
                 <h3>Resume Generation Pipeline</h3>
                 <div class="mermaid">
 graph LR
-    A["Job Description<br/>(JD)"]
-    B["Resume Template<br/>(HTML)"]
-    C["Resume Generator<br/>(Node.js)"]
-    D["Parse JD<br/>Keywords"]
-    E["Select Template<br/>Role-based"]
-    F["Fill<br/>Placeholders"]
-    G["Generate .docx"]
-    H["Generate .pdf"]
-    I["Output Files"]
+    A["Job Desc"]
+    B["Template"]
+    C["Generator"]
+    D["Parse KW"]
+    E["Select Role"]
+    F["Fill"]
+    G["DOCX"]
+    H["PDF"]
+    I["Output"]
     
     A -->|input| D
     B -->|template| E
@@ -930,14 +930,14 @@ graph LR
                 <h3>Portfolio Deployment Flow</h3>
                 <div class="mermaid">
 graph TB
-    A["Create Portfolio<br/>Locally"]
-    B["HTML/CSS/JS<br/>Files"]
+    A["Create Portfolio"]
+    B["HTML/CSS/JS"]
     C["Git Commit"]
     D["Git Push"]
     E["GitHub Repo"]
     F["Enable Pages"]
-    G["GitHub Actions<br/>Build"]
-    H["Pages CDN<br/>Cache"]
+    G["GitHub Build"]
+    H["CDN Cache"]
     I["Live Portfolio"]
     
     A -->|create| B
