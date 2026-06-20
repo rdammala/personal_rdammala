@@ -838,23 +838,23 @@
                 <h3>High-Level System Architecture</h3>
                 <div class="mermaid">
 graph TB
-    subgraph DL["Data Layer"]
+    subgraph "Data Layer"
         A["27 Repos"]
         B["Local Clones"]
     end
     
-    subgraph PL["Processing Layer"]
-        C["PowerShell\nSync"]
-        D["Node.js\nGenerator"]
-        E["GitHub\nActions"]
+    subgraph "Processing"
+        C["PowerShell Sync"]
+        D["Node.js Gen"]
+        E["GitHub Actions"]
     end
     
-    subgraph PR["Presentation Layer"]
+    subgraph "Presentation"
         F["9 Portfolios"]
         G["Job Tracker"]
     end
     
-    subgraph DP["Deployment"]
+    subgraph "Deployment"
         H["GitHub Pages"]
         I["GitHub Repos"]
     end

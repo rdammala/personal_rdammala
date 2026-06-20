@@ -45,8 +45,13 @@ This project showcases **end-to-end software development lifecycle** for a perso
 
 ## 🎓 Interactive Learning Website
 
-**Local:** [http://localhost:8000/learning-hub.html](http://localhost:8000/learning-hub.html)  
+**⭐ LIVE LEARNING HUB:** [learning-hub.html](file:///c:\rdammala\personal_rdammala\learning-hub.html)  
+**Local HTTP:** [http://localhost:8000/learning-hub.html](http://localhost:8000/learning-hub.html)  
+**GitHub Raw:** [https://github.com/rdammala/personal_rdammala/blob/master/learning-hub.html](https://github.com/rdammala/personal_rdammala/blob/master/learning-hub.html)  
 **GitHub Pages:** (To be deployed)
+
+> **Quick Start:** Open `learning-hub.html` locally for instant access to all 5 interactive modules, dark/light mode, and full-text search.
+> No server required — 100% self-contained HTML file.
 
 Features:
 - Searchable learning modules
